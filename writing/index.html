@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/platform.css">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("egp.theme");if(t)document.documentElement.setAttribute("data-theme",JSON.parse(t));var s=localStorage.getItem("egp.section");document.documentElement.dataset.section=s?JSON.parse(s):"ls"}catch(e){}</script>
+<script>window.EGP_ROOT = "../";</script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/companion.js" defer></script>
+<script src="../assets/js/platform.js" defer></script>
+
+<title>Writing studio · English G12</title>
+<meta name="description" content="Write an official-exam essay step by step: real past LS and SE prompts, the official outline, a live 250–300 word counter, connectors, automatic checks and a self-assessment on the official criteria.">
+<script src="../assets/js/writing-data.js" defer></script>
+<script src="../assets/js/studio.js" defer></script>
+<style>
+  @media print {
+    .topbar, footer.site, .no-print, .studio > .pane:first-child, #side { display: none !important; }
+    .studio { display: block; } .studio .preview { position: static; max-height: none; border: 0; box-shadow: none; }
+    .draft { font-size: 12pt; }
+  }
+</style>
+</head>
+<body data-nav="writing">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="English G12, home: the paper">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="5" y="2.5" width="16" height="21" rx="1.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/><path d="M8.5 8h9M8.5 11.5h9M8.5 15h5.5" stroke="var(--ink-2)" stroke-width="1.4" stroke-linecap="round"/><path d="M14.5 18.5l2 2 4-5" stroke="var(--pen)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>English G12</span>
+    </a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="../index.html" data-nav="paper"><span class="w-full">The paper</span><span class="w-short">Paper</span></a>
+      <a href="../reading/index.html" data-nav="reading"><span class="w-full">Reading room</span><span class="w-short">Reading</span></a>
+      <a href="../writing/index.html" data-nav="writing"><span class="w-full">Writing studio</span><span class="w-short">Writing</span></a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="seg" role="group" aria-label="My section">
+      <button type="button" data-section-btn="ls" aria-pressed="true" title="Life Sciences">LS</button>
+      <button type="button" data-section-btn="se" aria-pressed="false" title="Sociology and Economics">SE</button>
+    </div>
+    <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch light or dark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap" style="padding-bottom:40px">
+  <header style="padding-top:22px" class="no-print">
+    <h1>Writing studio</h1>
+    <p class="lead">Choose a real prompt from a past paper, write your essay one part at a time on the official outline, and see it come together. Your draft stays on this device.</p>
+  </header>
+
+  <section class="no-print" style="margin:6px 0 16px">
+    <label for="prompt"><b>Prompt</b></label>
+    <select id="prompt" style="width:100%;font:inherit;padding:9px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);margin:6px 0 10px"></select>
+    <div class="onpaper" id="prompt-text"></div>
+    <p class="muted" id="model-link" style="margin-top:8px;font-size:.92rem"></p>
+  </section>
+
+  <div class="studio">
+    <div class="pane">
+      <h2 style="font-size:1.15rem">Build it</h2>
+      <p class="muted" style="font-size:.9rem;margin-top:-4px">Write each part in full sentences. Tap a connector below to insert it where your cursor is.</p>
+      <div id="outline"></div>
+      <h3 style="font-size:1rem;margin-top:18px">Connectors</h3>
+      <div class="palette" id="palette"></div>
+    </div>
+    <div>
+      <div class="pane preview">
+        <div class="wc" id="wc"><span class="n">0</span><span class="m muted"></span></div>
+        <div class="wcbar" id="wcbar" aria-hidden="true"><i></i><b title="250–300 words"></b></div>
+        <div class="draft" id="draft" aria-live="polite"></div>
+        <div class="row no-print" style="margin-top:12px"><button class="btn small" id="copy" type="button">Copy essay</button><button class="btn small ghost" id="print" type="button">Print</button><button class="btn small ghost" id="clear" type="button">Clear draft</button></div>
+      </div>
+      <div class="pane" id="side" style="margin-top:16px">
+        <h3 style="font-size:1.05rem">Automatic checks</h3>
+        <ul class="autocheck" id="checks"></ul>
+        <h3 style="font-size:1.05rem;margin-top:16px;display:flex;justify-content:space-between;align-items:baseline">Mark yourself <span class="estimate" id="estimate">≈ 0 / 8</span></h3>
+        <p class="muted" style="font-size:.88rem;margin:0">Tick what is true of your essay, honestly. This is a self-estimate on the official criteria, not an official mark.</p>
+        <div class="rubric" id="rubric"></div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="site"><div class="wrap">
+  <p>English G12: a free companion for Grade 12 Life Sciences and Sociology &amp; Economics students preparing the Lebanese official English exam.</p>
+  <p>Paper structure, instructions and marking follow the CRDP official papers and grading schemes. Reading texts on this site are original practice texts. Voices are generated with the open-source Kokoro model.</p>
+</div></footer>
+
+</body>
+</html>

@@ -15,12 +15,15 @@ The paper is the map: work goes skill by skill, in the order that earns students
 | Meaning from context | Section E (1) |
 | Reference words | Section F (0.5) |
 | Reading room: 3 texts, natural voice, exam questions | All of Part One |
+| Essay toolkit: marking, decoding a prompt, official outline, word budget, connectors | Part Two (8) |
+| Argumentative, persuasive, problem-solution, cause-effect: real prompts, outline, model essay read aloud | Part Two |
+| Writing studio: 14 real prompts, outline builder, live word count, automatic checks, self-marking | Part Two |
 
 ## Next
 
 1. **Section C, analysis (4 marks)**: thesis and title, introductions and conclusions, patterns of organisation, thematic relations and cohesion, tone and mood, purpose, type of writing and audience, credibility and evidence, figures of speech (simile, metaphor, personification, irony), logical fallacies, character sketch, summarising.
 2. **Section D**: drawing a conclusion from a table or graph.
-3. **Part Two, writing (8 marks)**: essay toolkit (outline, connectors, the 3.5 / 3.5 / 1 rubric), then argumentative (new in the 2026–2027 list), persuasive, problem-solution, cause-effect, with a short look at expository essays from past papers. A writing studio with a live 250–300 word counter.
+3. **Writing, next steps**: model essays at three levels (weak, average, strong) for each genre; more SE prompts as papers are added.
 4. **Reading room**: one text per theme for each section.
 5. **Official papers**: retyped LS and SE papers with marks and grading schemes, linked to the skills they test.
 6. **Exam-day kit**: one-page printables (command words, connectors, tone words, time plan).

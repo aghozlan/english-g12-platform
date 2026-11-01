@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
   const base = "http://127.0.0.1:" + server.address().port;
   const browser = await chromium.launch({ args: ["--use-gl=swiftshader", "--enable-webgl", "--ignore-gpu-blocklist"] });
   const pages = [["home", "/index.html"]];
-  for (const dir of ["reading", "skills"]) {
+  for (const dir of ["reading", "skills", "writing"]) {
     const d = path.join(root, dir);
     if (fs.existsSync(path.join(d, "index.html"))) pages.push([dir, "/" + dir + "/index.html"]);
     if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) if (fs.existsSync(path.join(d, f, "index.html"))) pages.push([dir + "-" + f, "/" + dir + "/" + f + "/index.html"]);

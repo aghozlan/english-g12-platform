@@ -49,12 +49,12 @@ window.EGP_PAPER = [
     ]}
   ]},
   { part: "Two", title: "Writing", score: 8, note: "Choose ONE of the two prompts. 250–300 words. Content and organisation of ideas (3.5), language and style (3.5), tidiness and legible handwriting (01).", sections: [
-    { key: "W", letter: "", title: "The essay", instruction: "Write a well-organised essay of 250–300 words.", marks: 8, skills: [
-      { id: "essay-toolkit", title: "Essay toolkit: outline, connectors, the rubric", w: 3, status: "soon" },
-      { id: "argumentative", title: "Argumentative essay", w: 1.5, status: "soon" },
-      { id: "persuasive", title: "Persuasive essay", w: 1, status: "soon" },
-      { id: "problem-solution", title: "Problem-solution essay", w: 1.25, status: "soon" },
-      { id: "cause-effect", title: "Cause-effect essay", w: 1.25, status: "soon" }
+    { key: "W", letter: "", title: "The essay", instruction: "Write a well-organised essay of 250–300 words.", marks: 8, studio: true, skills: [
+      { id: "essay-toolkit", title: "Essay toolkit: outline, connectors, the rubric", w: 3, status: "live" },
+      { id: "argumentative", title: "Argumentative essay", w: 1.5, status: "live" },
+      { id: "persuasive", title: "Persuasive essay", w: 1, status: "live" },
+      { id: "problem-solution", title: "Problem-solution essay", w: 1.25, status: "live" },
+      { id: "cause-effect", title: "Cause-effect essay", w: 1.25, status: "live" }
     ]}
   ]}
 ];

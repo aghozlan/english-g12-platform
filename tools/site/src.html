@@ -75,7 +75,7 @@ window.addEventListener("egp-ready", function () {
           return k.status === "live"
             ? '<a class="skill" href="skills/' + k.id + '/index.html">' + t + EGP.esc(k.title) + "</a>"
             : '<span class="skill soon" title="Coming soon">' + EGP.esc(k.title) + "</span>";
-        }).join("") + "</div>";
+        }).join("") + (s.studio ? '<a class="skill studio-link" href="writing/index.html">Open the writing studio</a>' : "") + "</div>";
         if (s.marks) html += '<div class="mbox" aria-label="' + got + " of " + s.marks + ' marks ready"><span class="got">' + (got ? EGP.fmt(got) : "") + '</span><span class="max">' + EGP.fmt(s.marks) + "</span></div>";
         html += "</div>";
       });

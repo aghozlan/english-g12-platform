@@ -238,6 +238,36 @@
       });
     });
 
+    /* ---------- Model essay viewer: skeleton and connectors ---------- */
+    const ROLE = { intro: "Introduction", body: "Body paragraph", counter: "Counter claim and refutation", conclusion: "Conclusion" };
+    $$('[data-lab="essay"]').forEach((lab) => {
+      const ess = $(".selection", lab); if (!ess) return;
+      // label paragraphs (shown in skeleton mode)
+      $$("p[data-role]", ess).forEach((p) => { const t = document.createElement("span"); t.className = "role-tag"; t.textContent = ROLE[p.dataset.role] || ""; p.prepend(t); });
+      // wrap connectors
+      const list = [].concat(...((window.EGP_WRITING || {}).connectors || []).map((c) => c[1])).map((w) => w.replace(/[,]$/, "")).filter((w) => w.length > 2)
+        .concat(["Admittedly", "Equally important", "for its part", "In short", "Clearly", "Another important cause", "The first problem", "The second problem", "The main cause", "quite simply"]);
+      list.sort((a, b) => b.length - a.length);
+      const re = new RegExp("\\b(" + list.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")\\b", "g");
+      $$(".s", ess).forEach((s) => { s.innerHTML = s.innerHTML.replace(re, '<mark class="cn">$1</mark>'); });
+      $$("[data-view]", lab).forEach((b) => b.addEventListener("click", () => {
+        const on = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", on);
+        ess.classList.toggle(b.dataset.view, on);
+      }));
+    });
+
+    /* ---------- Prompt decoder: highlight the parts of a real prompt ---------- */
+    $$('[data-lab="decode"]').forEach((lab) => {
+      const fb = $(".feedback", lab);
+      const notes = { genre: "The genre decides the outline. Argumentative needs a refutation; persuasive does not.", task: "The task verb tells you what to do with the topic: argue, show, discuss, identify, suggest.", focus: "The focus gives you the content of your body paragraphs. Items in brackets are ready-made ideas.", length: "250–300 words: below or above costs marks. Plan about 50 / 90 / 90 / 50." };
+      $$("[data-part-btn]", lab).forEach((b) => b.addEventListener("click", () => {
+        const k = b.dataset.partBtn; const on = b.getAttribute("aria-pressed") !== "true";
+        $$("[data-part-btn]", lab).forEach((x) => x.setAttribute("aria-pressed", "false"));
+        $$("[data-part]", lab).forEach((x) => x.classList.remove("hl"));
+        if (on) { b.setAttribute("aria-pressed", "true"); $$('[data-part="' + k + '"]', lab).forEach((x) => x.classList.add("hl")); fb.className = "feedback ok"; fb.textContent = notes[k]; } else { fb.textContent = ""; fb.className = "feedback"; }
+      }));
+    });
+
     /* ---------- 8. Timer ---------- */
     $$('[data-lab="timer"]').forEach((lab) => {
       const total = (+lab.dataset.minutes || 30) * 60; let left = total, tm = null;

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../partials/head.html}}
+<title>Writing studio · English G12</title>
+<meta name="description" content="Write an official-exam essay step by step: real past LS and SE prompts, the official outline, a live 250–300 word counter, connectors, automatic checks and a self-assessment on the official criteria.">
+<script src="{{root}}assets/js/writing-data.js" defer></script>
+<script src="{{root}}assets/js/studio.js" defer></script>
+<style>
+  @media print {
+    .topbar, footer.site, .no-print, .studio > .pane:first-child, #side { display: none !important; }
+    .studio { display: block; } .studio .preview { position: static; max-height: none; border: 0; box-shadow: none; }
+    .draft { font-size: 12pt; }
+  }
+</style>
+</head>
+<body data-nav="writing">
+{{> ../../partials/topbar.html}}
+<main id="main" class="wrap" style="padding-bottom:40px">
+  <header style="padding-top:22px" class="no-print">
+    <h1>Writing studio</h1>
+    <p class="lead">Choose a real prompt from a past paper, write your essay one part at a time on the official outline, and see it come together. Your draft stays on this device.</p>
+  </header>
+
+  <section class="no-print" style="margin:6px 0 16px">
+    <label for="prompt"><b>Prompt</b></label>
+    <select id="prompt" style="width:100%;font:inherit;padding:9px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);margin:6px 0 10px"></select>
+    <div class="onpaper" id="prompt-text"></div>
+    <p class="muted" id="model-link" style="margin-top:8px;font-size:.92rem"></p>
+  </section>
+
+  <div class="studio">
+    <div class="pane">
+      <h2 style="font-size:1.15rem">Build it</h2>
+      <p class="muted" style="font-size:.9rem;margin-top:-4px">Write each part in full sentences. Tap a connector below to insert it where your cursor is.</p>
+      <div id="outline"></div>
+      <h3 style="font-size:1rem;margin-top:18px">Connectors</h3>
+      <div class="palette" id="palette"></div>
+    </div>
+    <div>
+      <div class="pane preview">
+        <div class="wc" id="wc"><span class="n">0</span><span class="m muted"></span></div>
+        <div class="wcbar" id="wcbar" aria-hidden="true"><i></i><b title="250–300 words"></b></div>
+        <div class="draft" id="draft" aria-live="polite"></div>
+        <div class="row no-print" style="margin-top:12px"><button class="btn small" id="copy" type="button">Copy essay</button><button class="btn small ghost" id="print" type="button">Print</button><button class="btn small ghost" id="clear" type="button">Clear draft</button></div>
+      </div>
+      <div class="pane" id="side" style="margin-top:16px">
+        <h3 style="font-size:1.05rem">Automatic checks</h3>
+        <ul class="autocheck" id="checks"></ul>
+        <h3 style="font-size:1.05rem;margin-top:16px;display:flex;justify-content:space-between;align-items:baseline">Mark yourself <span class="estimate" id="estimate">≈ 0 / 8</span></h3>
+        <p class="muted" style="font-size:.88rem;margin:0">Tick what is true of your essay, honestly. This is a self-estimate on the official criteria, not an official mark.</p>
+        <div class="rubric" id="rubric"></div>
+      </div>
+    </div>
+  </div>
+</main>
+{{> ../../partials/footer.html}}
+</body>
+</html>

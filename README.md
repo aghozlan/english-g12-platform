@@ -10,6 +10,7 @@ Live: https://aghozlan.github.io/english-g12-platform/
 
 - **The paper** (home): the exam sheet, marks in the margin, the examiner’s comment, word of the day, days to the exam.
 - **Skills** (`skills/<id>/`): live now: the paper and timing, skim/scan, command words, own-words answers (A), inferring (A), false statements (B), vocabulary in context (E), reference words (F). The rest of Section C, D and the essays are listed as coming.
+- **Writing** (`skills/essay-toolkit`, `skills/<genre>`, `writing/`): the essay toolkit, four genre pages with real prompts, the official outlines and model essays read aloud, and a writing studio that builds an essay on the outline with a live word count, automatic checks and self-marking on the official criteria.
 - **Reading room** (`reading/`): original exam-style texts on the LS and SE themes, read aloud by a natural voice with the sentence highlighted, reading tools (skim, scan, highlighter, pronoun tracer), and a full set of exam questions with model answers.
 
 ## How it is built
@@ -22,6 +23,8 @@ tools/partials/            head, top bar, footer
 tools/texts/<id>.html      reading texts (original practice texts)
 tools/texts/questions/     the exam question set of each text
 tools/build.js             builds every page
+tools/essays.py            model essays → tools/texts/essay-<genre>.html
+tools/genres.py            writes the four genre pages from one template
 tools/audio.py             records texts and word clips with a natural voice (Kokoro, open source, offline)
 tools/check.js             Playwright: phone and desktop, light and dark, console errors, horizontal scroll
 assets/js/catalog.js       THE map: paper sections, skills, their marks and status; the reading-room list
