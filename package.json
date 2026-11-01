@@ -1,0 +1,13 @@
+{
+  "name": "english-g12-platform",
+  "private": true,
+  "description": "Grade 12 English study companion (Lebanese official exams, LS and SE)",
+  "scripts": {
+    "build": "node tools/build.js",
+    "print": "node tools/print.js",
+    "check": "node tools/check.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}
