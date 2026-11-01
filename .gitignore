@@ -1,0 +1,4 @@
+# Raw sources (teacher's PDF, CRDP downloads) — never published
+_raw/
+node_modules/
+.DS_Store
