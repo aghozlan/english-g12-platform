@@ -9,7 +9,7 @@ Live: https://aghozlan.github.io/english-g12-platform/
 ## What is on the site
 
 - **The paper** (home): the exam sheet, marks in the margin, the examiner’s comment, word of the day, days to the exam.
-- **Skills** (`skills/<id>/`): live now: the paper and timing, skim/scan, command words, own-words answers (A), inferring (A), false statements (B), vocabulary in context (E), reference words (F). The rest of Section C, D and the essays are listed as coming.
+- **Skills** (`skills/<id>/`): live now: the paper and timing, skim/scan, command words, own-words answers (A), inferring (A), false statements (B), vocabulary in context (E), reference words (F). Section C and D are listed as coming.
 - **Writing** (`skills/essay-toolkit`, `skills/<genre>`, `writing/`): the essay toolkit, four genre pages with real prompts, the official outlines and model essays read aloud, and a writing studio that builds an essay on the outline with a live word count, automatic checks and self-marking on the official criteria.
 - **Reading room** (`reading/`): original exam-style texts on the LS and SE themes, read aloud by a natural voice with the sentence highlighted, reading tools (skim, scan, highlighter, pronoun tracer), and a full set of exam questions with model answers.
 
