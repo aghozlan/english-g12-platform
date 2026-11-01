@@ -26,20 +26,20 @@ window.EGP_PAPER = [
       { id: "false-statements", title: "Correcting false statements", w: 1, status: "live" }
     ]},
     { key: "C", letter: "C", title: "Analysing the text", instruction: "Answer the following questions in complete sentences.", marks: 4, skills: [
-      { id: "thesis-title", title: "Thesis statement and title", w: 0.4, status: "soon" },
-      { id: "intro-conclusion", title: "Introductions and conclusions", w: 0.4, status: "soon" },
-      { id: "organisation", title: "Patterns of organisation", w: 0.4, status: "soon" },
-      { id: "relations", title: "Thematic relations and cohesion", w: 0.4, status: "soon" },
-      { id: "tone-mood", title: "Tone and mood", w: 0.5, status: "soon" },
-      { id: "purpose-audience", title: "Purpose, type of writing, audience", w: 0.5, status: "soon" },
-      { id: "credibility", title: "Credibility and evidence", w: 0.5, status: "soon" },
-      { id: "figures", title: "Figures of speech", w: 0.4, status: "soon" },
-      { id: "fallacies", title: "Logical fallacies", w: 0.2, status: "soon" },
-      { id: "character", title: "Character sketch", w: 0.2, status: "soon" },
-      { id: "summary", title: "Summarising and paraphrasing", w: 0.1, status: "soon" }
+      { id: "thesis-title", title: "Thesis statement and title", w: 0.4, status: "live" },
+      { id: "intro-conclusion", title: "Introductions and conclusions", w: 0.4, status: "live" },
+      { id: "organisation", title: "Patterns of organisation", w: 0.4, status: "live" },
+      { id: "relations", title: "Thematic relations and cohesion", w: 0.4, status: "live" },
+      { id: "tone-mood", title: "Tone and mood", w: 0.5, status: "live" },
+      { id: "purpose-audience", title: "Purpose, type of writing, audience", w: 0.5, status: "live" },
+      { id: "credibility", title: "Credibility and evidence", w: 0.5, status: "live" },
+      { id: "figures", title: "Figures of speech", w: 0.4, status: "live" },
+      { id: "fallacies", title: "Logical fallacies", w: 0.2, status: "live" },
+      { id: "character", title: "Character sketch", w: 0.2, status: "live" },
+      { id: "summary", title: "Summarising and paraphrasing", w: 0.1, status: "live" }
     ]},
     { key: "D", letter: "D", title: "Table or graph", instruction: "Read the table carefully, and then answer the question that follows. Explain your answer in 4 to 5 sentences, using evidence.", marks: 1.5, skills: [
-      { id: "graphs-tables", title: "Drawing a conclusion from a table or graph", w: 1.5, status: "soon" }
+      { id: "graphs-tables", title: "Drawing a conclusion from a table or graph", w: 1.5, status: "live" }
     ]},
     { key: "E", letter: "E", title: "Vocabulary", instruction: "Based on contextual clues, infer the meaning of each word in the box below. Then fill in the blanks with the correct words.", marks: 1, skills: [
       { id: "vocabulary", title: "Meaning from context", w: 1, status: "live" }
