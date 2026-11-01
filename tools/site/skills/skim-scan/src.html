@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>Skim, read the questions, scan · English G12</title>
+<meta name="description" content="Read an official-exam selection in three passes: skim for the skeleton, read the questions, scan for the idea, not just the word.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/skill.js" defer></script>
+</head>
+<body data-skill="skim-scan" data-nav="paper">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap skill-page">
+  <div id="skill-top"></div>
+  <header class="skill-head">
+    <h1>Skim, read the questions, scan</h1>
+    <p class="lead">Strong readers never read an exam text once from top to bottom. They read it in three passes, each with its own job.</p>
+    <div id="skill-badge"></div>
+  </header>
+
+  <section class="block">
+    <h2><span class="k">On the paper</span>The preview line is your first clue</h2>
+    <div class="onpaper">In the following selection, the narrator shares what she has gone through with her daughter who suffers from Diabetes 1. Read it carefully, and then answer the questions that follow.<span class="src">The italic preview of the LS paper, June 2019. Every paper opens this way: it tells you the topic before you read a line.</span></div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The method</span>Three passes</h2>
+    <ol class="steps">
+      <li><b>Skim</b>: the preview, the title, then the <b>first and last sentence of each paragraph</b>. In two minutes you have the skeleton of the text.</li>
+      <li><b>Read the questions</b>, all of them, before reading in detail. Now you know what to look for, and which paragraphs matter.</li>
+      <li><b>Scan</b>: go to the paragraph a question names and hunt for its key idea. Only then write.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">Try it</span>See the skeleton, then hunt</h2>
+    <p>Press <b>Skim view</b>: everything fades except the first and last sentences of each paragraph. Then type a word to scan for.</p>
+    <div class="lab" data-lab="readtool">
+      <div class="tools">
+        <button class="chip" data-tool="skim" aria-pressed="false">Skim view</button>
+        <label class="sr" for="scan-1">Words to scan for</label>
+        <input type="text" id="scan-1" data-tool="scan" placeholder="Scan for a word, e.g. survey" style="max-width:260px">
+        <span class="muted" data-out="scan"></span>
+      </div>
+      <div data-sec="ls">{{> ../../../texts/wired-awake.html|a}}</div>
+      <div data-sec="se">{{> ../../../texts/price-of-a-click.html|a}}</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The trap</span>Questions speak in synonyms</h2>
+    <p>Examiners rarely copy the text’s words into the question. Scan for the <b>idea</b>, not only the word. Tap a question word, then its partner from the text.</p>
+    <div class="lab" data-lab="match" data-sec="ls">
+      <div class="row" data-side="q">
+        <button class="chip" data-pair="1">obstacles to sleep</button>
+        <button class="chip" data-pair="2">designed to be addictive</button>
+        <button class="chip" data-pair="3">emotional effects</button>
+        <button class="chip" data-pair="4">solutions</button>
+      </div>
+      <div class="row" data-side="t" style="margin-top:8px">
+        <button class="chip" data-pair="3">“anxious, irritable and sad” (P6)</button>
+        <button class="chip" data-pair="1">“delays this hormone” (P3)</button>
+        <button class="chip" data-pair="4">“small changes can make a large difference” (P7)</button>
+        <button class="chip" data-pair="2">“works like a slot machine” (P4)</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    <div class="lab" data-lab="match" data-sec="se">
+      <div class="row" data-side="q">
+        <button class="chip" data-pair="1">financial motive</button>
+        <button class="chip" data-pair="2">loss of trust</button>
+        <button class="chip" data-pair="3">divided society</button>
+        <button class="chip" data-pair="4">checking a photo</button>
+      </div>
+      <div class="row" data-side="t" style="margin-top:8px">
+        <button class="chip" data-pair="4">“a reverse image search” (P7)</button>
+        <button class="chip" data-pair="3">“communities split into separate groups” (P5)</button>
+        <button class="chip" data-pair="1">“Every click brings advertising income” (P4)</button>
+        <button class="chip" data-pair="2">“people begin to doubt all news” (P5)</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Check yourself</h2>
+    <div class="check">
+      <div class="quiz" data-sec="ls" data-a="2" data-ok="Yes. The first and last sentences carry it: phones keep teenagers awake, sleep loss hurts them, small changes help.">
+        <p>After skimming only, what is <i>Wired Awake</i> mainly about?</p>
+        <div class="opts">
+          <button class="chip" data-why="Karim is only the opening example, not the whole topic.">A Lebanese teenager who failed a physics test.</button>
+          <button class="chip" data-why="Melatonin appears in one paragraph only.">How the hormone melatonin works.</button>
+          <button class="chip">How screens steal teenagers’ sleep, why it matters, and what can help.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-sec="se" data-a="1" data-ok="Yes. The skeleton shows a problem, its causes, its costs and a solution.">
+        <p>After skimming only, what is <i>The Price of a Click</i> mainly about?</p>
+        <div class="opts">
+          <button class="chip" data-why="The bridge story is only the opening anecdote.">A bridge that collapsed in Tripoli.</button>
+          <button class="chip">How social media spreads false news, what it costs, and how readers can resist it.</button>
+          <button class="chip" data-why="Advertising is one cause among several, in one paragraph.">How websites earn money from advertising.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-a="0" data-ok="Right. Reading the questions before the detailed reading tells you what to look for.">
+        <p>What should you do <b>right after</b> skimming?</p>
+        <div class="opts"><button class="chip">Read all the questions.</button><button class="chip" data-why="Not yet: without the questions, you do not know what to look for.">Read the whole text slowly.</button><button class="chip" data-why="Start writing only after scanning the right paragraph.">Start answering question 1.</button></div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+    <div id="skill-ready"></div>
+  </section>
+
+  <nav id="skill-pager" class="pager" aria-label="More skills"></nav>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

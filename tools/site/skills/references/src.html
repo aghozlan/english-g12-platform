@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>Reference words · English G12</title>
+<meta name="description" content="What does each bold-typed pronoun refer to? The reference-words question of the Lebanese official English paper, with a pronoun tracer.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/skill.js" defer></script>
+</head>
+<body data-skill="references" data-nav="paper">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap skill-page">
+  <div id="skill-top"></div>
+  <header class="skill-head">
+    <h1>Reference words</h1>
+    <p class="lead">A pronoun points back to something. Follow the arrow, write what is at the end of it, and the quarter marks add up.</p>
+    <div id="skill-badge"></div>
+  </header>
+
+  <section class="block">
+    <h2><span class="k">On the paper</span>Bold words in the text</h2>
+    <div class="onpaper">F. What does each of the pronouns, bold-typed in the selection above, refer to? 1. where (Paragraph 6) 2. It (Paragraph 9)<span class="src">LS, June 2019, (0.5). Some years ask for four words, (01).</span></div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">How it’s marked</span>A quarter each</h2>
+    <div class="marking">Each reference word is worth <span class="hand">0.25</span>. The official key for June 2019 shows what is accepted: <i>“where” refers to simple childhood (<b>or</b> childhood)</i>, and <i>“It” refers to the idea of committing more funding for research</i>. So a shorter form of the right noun is accepted, and <i>it</i> can stand for a whole idea. The wrong noun never earns the mark.</div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The method</span>Look back, test, write</h2>
+    <div class="scroll-x"><table class="t">
+      <tr><th>Kind</th><th>Words</th><th>Watch out</th></tr>
+      <tr><td>Personal</td><td>he, she, it, they, him, them, his, its, their…</td><td><i>it</i> can stand for a whole idea, not only a noun.</td></tr>
+      <tr><td>Relative</td><td>who, whom, whose, which, that, <b>where</b>, <b>when</b></td><td>The antecedent is right before it: <i>the room where…</i></td></tr>
+      <tr><td>Demonstrative</td><td>this, that, these, those</td><td><i>this</i> often sums up the previous sentence.</td></tr>
+      <tr><td>Indefinite</td><td>one, each, some, both, many, several, none…</td><td>Check singular or plural.</td></tr>
+    </table></div>
+    <ol class="steps">
+      <li>Look <b>back</b>: the antecedent is usually in the same or the previous sentence.</li>
+      <li>Check <b>agreement</b>: singular or plural, person or thing, place or time.</li>
+      <li><b>Test</b> it: put your answer in place of the pronoun. If the sentence still makes sense, you are right.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">Try it</span>The pronoun tracer</h2>
+    <p>Press <b>Trace references</b>, tap a bold word, then tap the words it refers to.</p>
+    <div class="lab" data-lab="readtool">
+      <div class="tools">
+        <button class="chip" data-tool="trace" aria-pressed="false">Trace references</button>
+        <span class="muted" data-out="trace">Linked: 0</span>
+      </div>
+      <div data-sec="ls">{{> ../../../texts/wired-awake.html|tr}}</div>
+      <div data-sec="se">{{> ../../../texts/price-of-a-click.html|tr}}</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Check yourself</h2>
+    <div class="check">
+      <div class="quiz" data-a="0" data-ok="Right. “where” points to a place just before it.">
+        <p>“…charging the phone outside the bedroom, <b>where</b> it cannot call for attention.” What does <b>where</b> refer to?</p>
+        <div class="opts"><button class="chip">outside the bedroom</button><button class="chip" data-why="“where” needs a place.">the phone</button><button class="chip" data-why="Attention is not a place.">attention</button></div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-a="2" data-ok="Yes. Test it: “…the content which is most likely…” works.">
+        <p>“…show each user the content <b>which</b> is most likely to keep him or her scrolling.” What does <b>which</b> refer to?</p>
+        <div class="opts"><button class="chip" data-why="A user is a person: “who”, not “which”.">each user</button><button class="chip" data-why="The algorithms show it; they are not the antecedent.">algorithms</button><button class="chip">the content</button></div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+    <div id="skill-ready"></div>
+  </section>
+
+  <nav id="skill-pager" class="pager" aria-label="More skills"></nav>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

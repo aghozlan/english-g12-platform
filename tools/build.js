@@ -1,50 +1,53 @@
-// Build every page:
-//   tools/<unit>/src.html  ->  units/<unit>/index.html
-// - {{> path}}           includes a partial (path relative to the unit folder)
-// - {{> path|suffix}}    same, with every id / data-ref / for made unique by "-suffix"
-//                        (lets one reading text appear in several panels)
-// - {{fig}}              inlines tools/<unit>/figs/fig.svg
-// - copies tools/<unit>/*.js next to the page
-// Answers stay in <div class="ans" hidden> blocks: the one place a future lock will encrypt.
-// Usage: node tools/build.js            (all units)
-//        node tools/build.js unit-1
+// Build every page of the site.
+//   tools/site/**/src.html  ->  the same path at the repo root, as index.html
+//   e.g. tools/site/skills/own-words/src.html -> skills/own-words/index.html
+//        tools/site/src.html                  -> index.html
+// - {{> path}}          includes a partial (path relative to the file that includes it)
+// - {{> path|suffix}}   same, with every id / data-ref / for made unique by "-suffix"
+// - {{root}}            relative path from the page to the site root ("", "../", "../../")
+// Answers live only in <div class="ans" hidden> blocks: the one place a future lock encrypts.
+// Usage: node tools/build.js
 const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const only = process.argv[2];
-const jobs = fs.readdirSync(__dirname)
-  .filter((d) => fs.existsSync(path.join(__dirname, d, "src.html")))
-  .filter((d) => !only || d === only);
+const site = path.join(__dirname, "site");
+
+function walk(dir, out = []) {
+  for (const f of fs.readdirSync(dir)) {
+    const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) walk(p, out);
+    else if (f === "src.html") out.push(p);
+  }
+  return out;
+}
 
 function expand(html, dir, depth = 0) {
-  if (depth > 6) throw new Error("include nesting too deep");
-  html = html.replace(/\{\{>\s*([^}|\s]+)(?:\|([a-z0-9-]+))?\s*\}\}/g, (_, p, suffix) => {
+  if (depth > 8) throw new Error("include nesting too deep");
+  return html.replace(/\{\{>\s*([^}|\s]+)(?:\|([a-z0-9-]+))?\s*\}\}/g, (_, p, suffix) => {
     const file = path.resolve(dir, p);
     let inc = expand(fs.readFileSync(file, "utf8"), path.dirname(file), depth + 1);
     if (suffix) inc = inc.replace(/\b(id|data-ref|for|aria-controls)="([^"]+)"/g, (m, a, v) => `${a}="${v}-${suffix}"`);
     return inc;
   });
-  html = html.replace(/\{\{([a-z0-9_]+)\}\}/g, (_, n) => fs.readFileSync(path.join(dir, "figs", n + ".svg"), "utf8"));
-  return html;
 }
 
-let problems = 0;
-for (const u of jobs) {
-  const src = path.join(__dirname, u);
-  const out = path.join(root, "units", u);
-  const html = expand(fs.readFileSync(path.join(src, "src.html"), "utf8"), src);
-  // sanity checks
+let problems = 0, pages = 0;
+for (const src of walk(site)) {
+  const rel = path.relative(site, path.dirname(src));            // "" or "skills/own-words"
+  const outDir = path.join(root, rel);
+  const prefix = rel ? rel.split(path.sep).map(() => "..").join("/") + "/" : "";
+  let html = expand(fs.readFileSync(src, "utf8"), path.dirname(src)).replace(/\{\{root\}\}/g, prefix);
   const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
-  const dup = ids.filter((x, i) => ids.indexOf(x) !== i);
-  if (dup.length) { problems++; console.error(`[${u}] duplicate ids:`, [...new Set(dup)].join(", ")); }
-  const exIds = [...html.matchAll(/data-ex="([^"]+)"/g)].map((m) => m[1]);
-  const exDup = exIds.filter((x, i) => exIds.indexOf(x) !== i);
-  if (exDup.length) { problems++; console.error(`[${u}] duplicate exercise ids:`, exDup.join(", ")); }
+  const dup = [...new Set(ids.filter((x, i) => ids.indexOf(x) !== i))];
+  if (dup.length) { problems++; console.error(`[${rel || "home"}] duplicate ids: ${dup.join(", ")}`); }
+  const left = html.match(/\{\{[^}]*\}\}/g);
+  if (left) { problems++; console.error(`[${rel || "home"}] unexpanded: ${left.join(" ")}`); }
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, "index.html"), html);
   const ans = (html.match(/<div class="ans" hidden>/g) || []).length;
-  fs.mkdirSync(out, { recursive: true });
-  fs.writeFileSync(path.join(out, "index.html"), html);
-  for (const f of fs.readdirSync(src)) if (f.endsWith(".js")) fs.copyFileSync(path.join(src, f), path.join(out, f));
-  console.log(`${u}: ok, ${exIds.length} exercises, ${ans} hidden answers, ${(html.length / 1024).toFixed(0)} KB`);
+  console.log(`${(rel || "home").padEnd(28)} ok  ${ans} hidden answers  ${(html.length / 1024).toFixed(0)} KB`);
+  pages++;
 }
+console.log(pages + " pages");
 process.exit(problems ? 1 : 0);

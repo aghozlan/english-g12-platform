@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>The paper and your 150 minutes · English G12</title>
+<meta name="description" content="How the Lebanese official English paper (Grade 12 LS and SE) is built, how its 20 marks are shared, and how to plan the two and a half hours.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/skill.js" defer></script>
+</head>
+<body data-skill="the-paper" data-nav="paper">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap skill-page">
+  <div id="skill-top"></div>
+  <header class="skill-head">
+    <h1>The paper and your 150 minutes</h1>
+    <p class="lead">Before any skill, know the ground. The paper has the same shape every year, so you can decide today how you will spend the time.</p>
+    <div id="skill-badge"></div>
+  </header>
+
+  <section class="block">
+    <h2><span class="k">On the paper</span>Two parts, 20 marks, 2½ hours</h2>
+    <div class="onpaper">Part One: Reading Comprehension (Score: 12/20) … Part Two: Writing (Choose ONE of the two prompts below.) (Score: 08/20)<span class="src">Every LS and SE paper since 2016. Duration: ساعتان ونصف, two hours and a half.</span></div>
+    <p style="margin-top:12px">Part One is built on one selection of about 600–800 words with a short preview line in italics. Its questions come in lettered sections. The letters move a little from year to year (false statements have been B, D and E), but the <b>kinds</b> of questions do not. Tap each one:</p>
+    <div class="lab" data-lab="paper">
+      <p class="lab-title">The paper, section by section</p>
+      <div class="paper-map row" role="group" aria-label="Sections of the paper"></div>
+      <div class="paper-info feedback ok" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">How it’s marked</span>Point by point</h2>
+    <div class="marking">In the official grading schemes, reading answers earn marks <b>per idea</b>, usually <span class="hand">0.5</span> each. A 1-mark question almost always wants <b>two</b> ideas. The essay is marked on three things: content and organisation <span class="hand">3.5</span>, language and style <span class="hand">3.5</span>, tidiness and legible handwriting <span class="hand">1</span>.</div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The method</span>Plan the 150 minutes before exam day</h2>
+    <div class="lab" data-lab="paper-time">
+      <p class="lab-title">Drag to choose how long you give to reading</p>
+      <input type="range" min="50" max="100" step="5" value="75" aria-label="Minutes for Part One" style="width:100%">
+      <div class="stat-row"><span>Part One (reading): <b data-out="r">75</b> min</span><span>Part Two (writing): <b data-out="w">60</b> min</span><span>Final check: <b>15</b> min</span></div>
+      <div class="feedback" data-out="advice"></div>
+    </div>
+    <ol class="steps">
+      <li><b>Skim</b> the text and its preview line (5 min).</li>
+      <li><b>Read every question</b>; underline command words and paragraph numbers (5 min).</li>
+      <li><b>Quick marks first</b>: false statements, reference words, vocabulary (15 min).</li>
+      <li><b>Written answers</b> of Sections A and C, paragraph by paragraph (35 min).</li>
+      <li>The <b>table or graph</b> question (10 min), then the essay: plan, write, check.</li>
+    </ol>
+    <div class="note">Many students do the essay first, while they are fresh. That works too, if you stop at your planned time.</div>
+  </section>
+
+  <section class="block">
+    <h2>Check yourself</h2>
+    <div class="check">
+      <div class="quiz" data-a="1" data-ok="Right: two ideas at 0.5 each is the usual pattern in the grading schemes.">
+        <p>A question is worth <b>(01)</b>. What does that usually mean?</p>
+        <div class="opts"><button class="chip" data-why="Length does not earn marks; ideas do.">Write about four long sentences.</button><button class="chip">Give two separate ideas, 0.5 each.</button><button class="chip" data-why="One idea usually earns only half the mark.">Give one well-explained idea.</button></div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-a="2" data-ok="Yes: language and style carry 3.5 of the 8 essay marks, as much as the ideas.">
+        <p>Which part of the essay mark is as large as content and organisation?</p>
+        <div class="opts"><button class="chip" data-why="Tidiness is worth 1 mark.">Tidiness and handwriting</button><button class="chip" data-why="There is no separate mark for length, though 250–300 words is required.">Word count</button><button class="chip">Language and style</button></div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+    <div id="skill-ready"></div>
+  </section>
+
+  <nav id="skill-pager" class="pager" aria-label="More skills"></nav>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

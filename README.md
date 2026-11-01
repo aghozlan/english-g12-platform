@@ -1,67 +1,65 @@
-# English G12 — Tutoring Centre
+# English G12
 
-A year-long study companion for **Grade 12 English (Lebanese official exams, LS and SE sections)**.
-Students open one link, pick their section, and follow a coastline of ten lighthouses from November to the June exam:
-interactive lessons, reading tools, flip cards, practice with hidden answers, printable class PDFs, and later the bank of official papers.
+A free companion for **Grade 12 English in the Lebanese official exams**, for Life Sciences and Sociology & Economics students anywhere in Lebanon.
 
-Student link: https://aghozlan.github.io/english-g12-platform/
+**The official paper is the map.** The home page is a replica of the exam sheet: every question type on it (Sections A to F, the analysis questions, the essay genres) opens its own skill page. Each skill shows how it appears on real papers, how the official grading schemes mark it, a method, a worked example, something to try, and a short self-check. When a student is ready for a skill, its share of the 20 marks appears in the margin, as an examiner would write it.
 
-## What is live
+Live: https://aghozlan.github.io/english-g12-platform/
 
-| Unit | Month | Status |
-|---|---|---|
-| 1. Reading the exam way | Nov | live |
-| 2–10 | Nov–May | planned (see [ROADMAP.md](ROADMAP.md)) |
-| Official exams bank | Jun | planned |
+## What is on the site
+
+- **The paper** (home): the exam sheet, marks in the margin, the examiner’s comment, word of the day, days to the exam.
+- **Skills** (`skills/<id>/`): live now: the paper and timing, skim/scan, command words, own-words answers (A), inferring (A), false statements (B), vocabulary in context (E), reference words (F). The rest of Section C, D and the essays are listed as coming.
+- **Reading room** (`reading/`): original exam-style texts on the LS and SE themes, read aloud by a natural voice with the sentence highlighted, reading tools (skim, scan, highlighter, pronoun tracer), and a full set of exam questions with model answers.
 
 ## How it is built
 
-Static site, no framework, no server. Hosted on GitHub Pages from `main`.
+Static site, no framework, no server, published by a GitHub Actions workflow on every push to `main`.
 
 ```
-index.html                     home: 3D Year Journey, countdown, Nour, word of the day, unit list
-assets/css/platform.css        shared look (light and dark)
-assets/js/platform.js          shared behaviour, ONE entry point: EGP.boot()
-assets/js/units.js             THE unit list (edit this to open a unit) and the exam date
-assets/js/companion.js         Nour, word of the day, streak, seasonal notes, celebrations
-assets/js/journey.js           the 3D coastline (three.js, lazy-loaded)
-assets/vendor/three.module.min.js   three.js 0.160, self-hosted
-units/<unit>/index.html        built unit page (never edit by hand)
-units/<unit>/*.pdf             printable class handouts, one per section
-tools/<unit>/src.html          unit source (edit this)
-tools/<unit>/texts/*.html      reading texts (original practice texts)
-tools/<unit>/<unit>.js         the unit's live models
-tools/partials/                shared head and top bar
-tools/build.js                 builds every unit
-tools/print.js                 builds the LS and SE PDFs of a unit
-tools/check.js                 Playwright check: phone/desktop, light/dark, console errors, horizontal scroll
-_raw/                          git-ignored: teacher's PDF, CRDP downloads, screenshots
+tools/site/**/src.html     page sources (edit these)  →  built to the same path as index.html
+tools/partials/            head, top bar, footer
+tools/texts/<id>.html      reading texts (original practice texts)
+tools/texts/questions/     the exam question set of each text
+tools/build.js             builds every page
+tools/audio.py             records texts and word clips with a natural voice (Kokoro, open source, offline)
+tools/check.js             Playwright: phone and desktop, light and dark, console errors, horizontal scroll
+assets/js/catalog.js       THE map: paper sections, skills, their marks and status; the reading-room list
+assets/js/platform.js      shared behaviour, one entry point EGP.boot()
+assets/js/labs.js          the interactive models
+assets/js/listen.js        the read-aloud player with sentence highlighting
+assets/js/skill.js         skill page chrome: crumbs, marks, "ready", next/previous
+audio/                     recorded texts (.m4a + sentence timings .json) and word clips
+_raw/                      git-ignored: reference PDF, CRDP downloads, screenshots
 ```
 
 ### Commands
 
 ```
-npm install                    # once (Playwright)
-npm run build                  # tools/*/src.html -> units/*/index.html
-npm run print -- unit-1 unit1_reading_the_exam_way
-npm run check                  # must print only "ok" lines before a publish
+npm install                          # once (Playwright)
+npm run build                        # build every page
+npm run check                        # must print only "ok" lines before a push
+python3 tools/audio.py kokoro-v1.0.onnx voices-v1.0.bin af_heart [text-id]   # record a text
 ```
 
-### Writing a unit
+The Kokoro model files come from the kokoro-onnx GitHub releases (`model-files-v1.0`).
 
-- Sections LS and SE: wrap section-specific content in `data-sec="ls"` / `data-sec="se"`; the top-bar switch shows one.
-- A reading text can be included several times with `{{> texts/ls.html|suffix}}`; the suffix keeps ids unique.
-- Every exercise: `<div class="ex" data-ex="u1-p1-e1">` with a **stable id**.
-- Every answer: `<div class="ans" hidden>…</div>`. Nothing else holds answers.
+### Adding a skill
 
-### Adding sign-in later (Firebase)
+1. Write `tools/site/skills/<id>/src.html` (copy a live skill for the pattern: on the paper, how it’s marked, method, try it, check yourself).
+2. Set its `status` to `"live"` in `assets/js/catalog.js`.
+3. `npm run build && npm run check`, then commit and push.
 
-Designed for it, nothing to restructure:
-1. Set `EGP.gate = async () => { /* sign in, check approval */ return true; }` in a script loaded before `platform.js`. `EGP.boot()` waits for it.
-2. In `tools/build.js`, encrypt each `<div class="ans" hidden>` block per page or per `data-ex` (the physics platform's AES-GCM scheme drops in here).
+### Adding a text
 
-## Sources and copyright
+1. `tools/texts/<id>.html` with sentences in `<span class="s">`, and `tools/texts/questions/<id>.html`.
+2. `tools/site/reading/<id>/src.html` (copy an existing one), add it to `EGP_TEXTS` in the catalog.
+3. Record it with `tools/audio.py`.
 
-- Exam structure, marks, question wording and themes follow the CRDP circulars (2025–2026 official-exam lessons, 2026–2027 curriculum) and the official papers with their grading schemes.
-- Reading texts in the units are **original practice texts**, labelled as such. Official exam texts will appear only in the official-exams bank, retyped as set.
-- The teacher's reference PDF is not published; it lives in `_raw/`.
+### Sign-in later
+
+Answers live only in `<div class="ans" hidden>` blocks and every exercise has a stable `data-ex` id. To add Firebase: set `EGP.gate = async () => …` before `platform.js` runs (`EGP.boot()` waits for it), and encrypt the `.ans` blocks in `tools/build.js`.
+
+## Sources
+
+Paper structure, instructions, marks and grading follow the CRDP official papers and their grading schemes, the 2025–2026 official-exam lessons circular and the 2026–2027 curriculum. Reading texts are original and labelled as practice texts. The reference PDF is not published.

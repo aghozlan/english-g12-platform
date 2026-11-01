@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>The Seed Library · Reading room · English G12</title>
+<meta name="description" content="The Seed Library: an original exam-style reading text (Human Values and The Ecological Environment (LS and SE)) for the Lebanese official English exam, read aloud by a natural voice, with exam questions and model answers.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/listen.js" defer></script>
+</head>
+<body data-nav="reading">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap" style="padding-bottom:30px">
+  <p class="crumbs"><a href="../index.html">Reading room</a> › Human Values and The Ecological Environment (LS and SE)</p>
+  <div class="lab" data-lab="readtool" id="reader" style="background:transparent;border:0;padding:0">
+    <div class="listen" data-audio="seed-library" data-for="reader"></div>
+    <details class="toolbox"><summary class="chip">Reading tools</summary>
+    <div class="tools" style="position:static;background:transparent;margin-top:8px">
+      <button class="chip" data-tool="skim" aria-pressed="false">Skim view</button>
+      <button class="chip" data-tool="main" aria-pressed="false"><span class="legend"><i style="background:var(--mark);margin-left:0"></i></span>Mark main idea</button>
+      <button class="chip" data-tool="detail" aria-pressed="false"><span class="legend"><i style="background:var(--mark-2);margin-left:0"></i></span>Mark detail</button>
+      <button class="chip" data-tool="checkmain">Check my main ideas</button>
+      <button class="chip" data-tool="trace" aria-pressed="false">Trace references</button>
+      <button class="chip" data-tool="clear">Clear</button>
+      <label class="sr" for="scan-seed-library">Scan for a word</label>
+      <input type="text" id="scan-seed-library" data-tool="scan" placeholder="Scan for a word" style="max-width:200px">
+      <span class="muted" data-out="scan"></span><span class="muted" data-out="trace"></span>
+    </div>
+    </details>
+    <div class="feedback" data-out="main"></div>
+    {{> ../../../texts/seed-library.html}}
+  </div>
+  <div style="max-width:46rem;margin-top:26px">
+    {{> ../../../texts/questions/seed-library.html}}
+    <p class="muted">Skills behind these questions: <a href="{{root}}skills/own-words/index.html">own words</a>, <a href="{{root}}skills/inference/index.html">inferring</a>, <a href="{{root}}skills/false-statements/index.html">false statements</a>, <a href="{{root}}skills/vocabulary/index.html">vocabulary</a>, <a href="{{root}}skills/references/index.html">reference words</a>.</p>
+  </div>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

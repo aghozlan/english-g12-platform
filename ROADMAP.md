@@ -1,39 +1,40 @@
 # Roadmap
 
-Each unit = two sessions of about 2½ hours: ① lesson steps with live models → ② flip cards → ③ practice, twice.
-Plus a printable PDF per section (≥ 12 pt, answer key at the end).
+The paper is the map: work goes skill by skill, in the order that earns students the most marks.
 
-| # | Month | Unit | LS text theme | SE text theme | Status |
-|---|---|---|---|---|---|
-| 1 | Nov | Reading the exam way: paper map, skim/scan, command words, own words, inference, false statements, reference words, vocabulary in context | Technology | The Media | **live** |
-| 2 | Nov | Main idea and structure: thesis stated/implied, title, 10 introduction types, 5 conclusion types | Ecological Environment | Pollution | next |
-| 3 | Dec | Organisation and coherence: modes, thematic relations, unity, direct/indirect links | Natural Phenomena | Natural Phenomena & Disasters | |
-| 4 | Dec | The writer's voice: tone, mood, purpose, type of writing, audience | The Teenager | Youth Problems | |
-| 5 | Jan | Evidence and reasoning: credibility, fact/opinion, refutation, logical fallacies | Human Rights | Democracy & Human Rights | |
-| 6 | Feb | Figures of speech (simile, metaphor, personification, irony) and character sketch | Human Values | Family & Gender Issues | |
-| 7 | Feb | Graphs, tables, illustrations; summarising and paraphrasing | Current Issues | Developed/Developing Countries | |
-| 8 | Mar | Writing studio I: argumentative (with counter-argument and refutation) and persuasive | across themes | across themes | |
-| 9 | Apr | Writing studio II: problem-solution, cause-effect; short look at expository (asked 9× in past papers) | Current Issues | Waves of Emigration | |
-| 10 | May | Exam rehearsal: full mock papers with countdown, time plan | mixed | mixed | |
-| — | Jun | Official exams bank: retyped papers, official marks, skills map, done tracker | | | |
+## Live
 
-## Platform pieces still to come
+| Skill | Paper |
+|---|---|
+| The paper and your 150 minutes | Before you start |
+| Skim, read the questions, scan | Before you start |
+| Command words | Before you start |
+| Answering in your own words | Section A (4) |
+| Inferring | Section A |
+| Correcting false statements | Section B (1) |
+| Meaning from context | Section E (1) |
+| Reference words | Section F (0.5) |
+| Reading room: 3 texts, natural voice, exam questions | All of Part One |
 
-- Writing Studio (drag-and-drop essay builder, connectors palette, live 250–300 word counter, official 3.5/3.5/1 rubric, three model levels) — with Units 8–9.
-- Language & Vocabulary constellations per theme — from Unit 2.
-- Exam Coach mock simulator — with Unit 10.
-- Official exams bank generator (data → page), same design as the physics bank.
+## Next
 
-## Curriculum facts (verified November 2026)
+1. **Section C, analysis (4 marks)**: thesis and title, introductions and conclusions, patterns of organisation, thematic relations and cohesion, tone and mood, purpose, type of writing and audience, credibility and evidence, figures of speech (simile, metaphor, personification, irony), logical fallacies, character sketch, summarising.
+2. **Section D**: drawing a conclusion from a table or graph.
+3. **Part Two, writing (8 marks)**: essay toolkit (outline, connectors, the 3.5 / 3.5 / 1 rubric), then argumentative (new in the 2026–2027 list), persuasive, problem-solution, cause-effect, with a short look at expository essays from past papers. A writing studio with a live 250–300 word counter.
+4. **Reading room**: one text per theme for each section.
+5. **Official papers**: retyped LS and SE papers with marks and grading schemes, linked to the skills they test.
+6. **Exam-day kit**: one-page printables (command words, connectors, tone words, time plan).
+
+## Curriculum facts (checked November 2026)
 
 - Exam: 2 h 30; Reading 12/20, Writing 8/20 (content and organisation 3.5, language and style 3.5, tidiness 1); essay 250–300 words, one of two prompts.
-- 2026–2027 required genres (LS and SE): persuasive, cause-effect, problem-solution, **argumentative** (new this year).
-- Required figures of speech: simile, metaphor, irony, personification.
-- Themes: from the CRDP 2025–2026 official-exam circular; update when the 2026–2027 exam list is published.
+- 2026–2027 genres (LS and SE): persuasive, cause-effect, problem-solution, argumentative.
+- Figures of speech: simile, metaphor, irony, personification.
+- Themes: CRDP 2025–2026 official-exam circular. LS: Current Issues, Ecological Environment, Technology, The Teenager, Human Rights, Natural Phenomena, Human Values. SE: Local and Global Issues, The Media, Democracy, Human Rights, Emigration, Ecological Environment, Pollution, Natural Phenomena and Disasters, The Family, Youth, Gender Issues, Developed and Developing Countries, Socio-economic Issues.
 
-## Official papers collected (CRDP archive, with grading schemes) — in `_raw/crdp/`
+## Official papers collected (in `_raw/crdp/`, with grading schemes)
 
-- LS: 2004–2009, 2011–2013, 2015–2019, sessions 1 and 2 (28 papers).
-- SE: 2018 session 2, 2019 sessions 1 and 2.
+- LS: 2004–2009, 2011–2013, 2015–2019, sessions 1 and 2.
+- SE: 2018 session 2; 2019 sessions 1 and 2.
 - CRDP model exams (GS/LS) 1–8, 2016–2019.
-- **Missing:** all 2021–2025 papers (both sections), SE before 2018, LS 2010. To be added when available.
+- Missing: 2021–2025 (both sections), SE before 2018, LS 2010.

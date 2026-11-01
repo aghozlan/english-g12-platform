@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../partials/head.html}}
+<title>English G12: the official English paper, skill by skill</title>
+<meta name="description" content="Free preparation for the Lebanese official English exam, Grade 12 Life Sciences and Sociology & Economics: every question type on the paper, how it is marked, and how to answer it.">
+</head>
+<body data-nav="paper">
+{{> ../partials/topbar.html}}
+
+<main id="main" class="desk">
+  <div class="wrap">
+    <article class="sheet" aria-labelledby="sheet-title">
+      <div class="sheet-head" aria-hidden="true">
+        <div class="ar l">وزارة التربية والتعليم العالي<br>المديرية العامة للتربية<br>دائرة الامتحانات الرسمية</div>
+        <div class="c">مسابقة في مادة اللغة الإنكليزية<br><span style="font-weight:400">المدة: ساعتان ونصف</span></div>
+        <div class="ar">امتحانات الشهادة الثانوية العامة<br><span data-sec="ls">فرعا العلوم العامة وعلوم الحياة</span><span data-sec="se" hidden>فرع الاجتماع والاقتصاد</span></div>
+      </div>
+
+      <div class="total" aria-live="polite">
+        <div class="ring"><div><span class="n" id="total-n">0</span><span class="of"> / 20</span></div></div>
+        <small>marks you are ready for</small>
+      </div>
+
+      <div class="sheet-id">
+        <label for="name">Name:</label> <input id="name" type="text" autocomplete="given-name" placeholder="your name" maxlength="24">
+        <span class="muted" style="font-size:.9rem">The official English paper, Grade 12 <span data-sec-text='{"ls":"Life Sciences","se":"Sociology and Economics"}'>Life Sciences</span>. Tap any question type to learn it.</span>
+      </div>
+      <h1 id="sheet-title" class="sr">The official English paper, skill by skill</h1>
+
+      <div id="paper"></div>
+      <p class="comment" id="comment"></p>
+    </article>
+
+    <div class="beside">
+      <section class="door" aria-labelledby="rr-h">
+        <h2 id="rr-h">Reading room</h2>
+        <p>Original exam-style texts on your section’s themes, read aloud by a natural voice, each with a full set of exam questions.</p>
+        <a class="btn small" href="reading/index.html">Open the reading room</a>
+      </section>
+      <section class="door" aria-labelledby="wod-h">
+        <h2 id="wod-h">Word of the day</h2>
+        <p class="w" id="wod-w"></p>
+        <p class="pos" id="wod-p"></p>
+        <p style="color:var(--ink)" id="wod-d"></p>
+        <p class="wex" id="wod-e"></p>
+        <button class="btn small ghost" type="button" id="wod-say">Hear it</button>
+      </section>
+      <section class="door" aria-labelledby="cd-h">
+        <h2 id="cd-h">Days to the exam</h2>
+        <p class="count-n" id="days">—</p>
+        <p id="days-note"></p>
+        <p>Past official papers, retyped with their marks and grading schemes, are on the way.</p>
+      </section>
+    </div>
+  </div>
+</main>
+
+{{> ../partials/footer.html}}
+
+<script>
+window.addEventListener("egp-ready", function () {
+  var EGP = window.EGP;
+  // the paper
+  function render() {
+    var ready = EGP.readySet(), marks = EGP.marks(), html = "";
+    (window.EGP_PAPER || []).forEach(function (p) {
+      html += '<section class="part"><div class="part-h"><h2>Part ' + p.part + ": " + p.title + '</h2><span class="score">(Score: ' + p.score + "/20)</span></div>";
+      if (p.note) html += '<p class="pnote">' + EGP.esc(p.note) + "</p>";
+      p.sections.forEach(function (s) {
+        var got = marks.by[s.key] || 0;
+        html += '<div class="sec"><div class="sec-ins"><span class="L">' + (s.letter ? s.letter + "." : "") + '</span><div><span class="what">' + EGP.esc(s.title) + "</span>" + EGP.esc(s.instruction) + "</div></div>";
+        html += '<div class="skills">' + s.skills.map(function (k) {
+          var t = ready[k.id] ? '<span class="tick" aria-label="ready">✓</span>' : "";
+          return k.status === "live"
+            ? '<a class="skill" href="skills/' + k.id + '/index.html">' + t + EGP.esc(k.title) + "</a>"
+            : '<span class="skill soon" title="Coming soon">' + EGP.esc(k.title) + "</span>";
+        }).join("") + "</div>";
+        if (s.marks) html += '<div class="mbox" aria-label="' + got + " of " + s.marks + ' marks ready"><span class="got">' + (got ? EGP.fmt(got) : "") + '</span><span class="max">' + EGP.fmt(s.marks) + "</span></div>";
+        html += "</div>";
+      });
+      html += "</section>";
+    });
+    document.getElementById("paper").innerHTML = html;
+    document.getElementById("total-n").textContent = EGP.fmt(marks.total);
+    document.getElementById("comment").textContent = EGP.comment();
+  }
+  render();
+  window.addEventListener("egp-ready-change", render);
+  // name, kept on this device
+  var nm = document.getElementById("name");
+  nm.value = EGP.store.get("name", "");
+  nm.addEventListener("input", function () { EGP.store.set("name", nm.value); });
+  // countdown
+  document.getElementById("days").textContent = EGP.daysToExam();
+  document.getElementById("days-note").textContent = (window.EGP_EXAM || {}).estimated ? "Estimated date, updated when the Ministry announces the exam." : "";
+  // word of the day, natural voice
+  var w = EGP.wordOfDay();
+  ["w", "p", "d", "e"].forEach(function (k, i) { document.getElementById("wod-" + k).textContent = w[i]; });
+  var say = document.getElementById("wod-say"), clip = null;
+  say.addEventListener("click", function () { if (!clip) clip = new Audio(EGP.wordAudio(w[0])); clip.currentTime = 0; clip.play().catch(function () { say.textContent = "Audio unavailable"; }); });
+});
+</script>
+</body>
+</html>

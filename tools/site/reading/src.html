@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../partials/head.html}}
+<title>Reading room · English G12</title>
+<meta name="description" content="Original exam-style reading texts on the LS and SE themes of the Lebanese official English exam, read aloud by a natural voice, each with a full set of exam questions and model answers.">
+</head>
+<body data-nav="reading">
+{{> ../../partials/topbar.html}}
+<main id="main" class="wrap" style="padding-bottom:40px">
+  <header style="padding-top:26px">
+    <h1>Reading room</h1>
+    <p class="lead">Texts written in the style of the official selections, on <span data-sec-text='{"ls":"the Life Sciences themes","se":"the Sociology and Economics themes"}'>your section’s themes</span>. Listen while you read, try the reading tools, then answer the exam questions.</p>
+  </header>
+  <div class="shelf" id="shelf"></div>
+  <p class="muted" style="margin-top:22px">More texts arrive as new skills go live. Every text is original and labelled as a practice text; real exam texts belong to the official papers.</p>
+</main>
+{{> ../../partials/footer.html}}
+<script>
+window.addEventListener("egp-ready", function () {
+  var EGP = window.EGP, shelf = document.getElementById("shelf");
+  function render() {
+    var sec = EGP.section(), done = EGP.store.get("exdone", {});
+    var list = (window.EGP_TEXTS || []).slice().sort(function (a, b) { return (a.sec === sec ? 0 : a.sec === "both" ? 1 : 2) - (b.sec === sec ? 0 : b.sec === "both" ? 1 : 2); });
+    shelf.innerHTML = list.map(function (t) {
+      var mine = t.sec === sec || t.sec === "both";
+      return '<a class="book" href="' + t.id + '/index.html"' + (mine ? "" : ' style="opacity:.7"') + '><span class="theme">' + EGP.esc(t.theme) + "</span><h2>" + EGP.esc(t.title) + "</h2><p>" + EGP.esc(t.blurb) + '</p><div class="meta">' + t.words + " words · read aloud" +
+        (t.sec === "both" ? " · LS and SE" : " · " + t.sec.toUpperCase() + " theme") + (done["rr-" + t.id] ? ' · <span class="hand" style="font-size:1rem">done ✓</span>' : "") + "</div></a>";
+    }).join("");
+  }
+  render(); window.addEventListener("egp-section", render);
+});
+</script>
+</body>
+</html>

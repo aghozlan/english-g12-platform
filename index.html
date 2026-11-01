@@ -3,80 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>English G12 · Your year to the official exam</title>
-<meta name="description" content="Grade 12 English for the Lebanese official exams (LS and SE): a year-long study companion with interactive lessons, reading and writing labs, and past official papers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/platform.css">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <script>try{var t=localStorage.getItem("egp.theme");if(t)document.documentElement.setAttribute("data-theme",JSON.parse(t));var s=localStorage.getItem("egp.section");document.documentElement.dataset.section=s?JSON.parse(s):"ls"}catch(e){}</script>
-<script src="assets/js/units.js" defer></script>
+<script>window.EGP_ROOT = "";</script>
+<script src="assets/js/catalog.js" defer></script>
 <script src="assets/js/companion.js" defer></script>
 <script src="assets/js/platform.js" defer></script>
-<style>
-  .journey { position: relative; height: min(64vh, 560px); min-height: 380px; overflow: hidden; background: var(--surface-2); border-bottom: 1px solid var(--line); }
-  .journey canvas { display: block; width: 100%; height: 100%; cursor: grab; }
-  .journey canvas:active { cursor: grabbing; }
-  .jlabels { position: absolute; inset: 0; pointer-events: none; }
-  .jl { position: absolute; left: 0; top: 0; pointer-events: auto; white-space: nowrap; font: 600 .82rem var(--ui); padding: 4px 9px; border-radius: 999px;
-        background: color-mix(in srgb, var(--surface) 88%, transparent); color: var(--ink); border: 1px solid var(--line); text-decoration: none; }
-  .jl b { color: var(--sea); margin-right: 2px; }
-  .jl-done { border-color: var(--lamp); }
-  .jl-next { background: var(--lamp); color: #2A1A00; border-color: var(--lamp); }
-  .jl-next b { color: #2A1A00; }
-  .jl-soon { opacity: .72; font-weight: 400; }
-  .jl:not(.jl-next) .full { display: none; }
-  .jl:hover .full { display: inline; }
-  .jl:hover { z-index: 2; }
-  @media (max-width: 600px) { .jl { font-size: .76rem; padding: 3px 8px; } .journey { height: 460px; min-height: 0; } }
-  .jl-exam { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .jl-exam b { color: var(--lamp); }
-  .j-over { position: absolute; left: 0; right: 0; top: 0; pointer-events: none; }
-  .j-over .wrap { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; padding-top: 18px; }
-  .j-title { pointer-events: auto; max-width: 30rem; }
-  .j-title h1 { margin: 0 0 4px; font-size: clamp(1.4rem, 3.2vw, 2rem); text-shadow: 0 1px 0 color-mix(in srgb, var(--bg) 70%, transparent); }
-  .j-title p { margin: 0; font-weight: 700; color: var(--ink); text-shadow: 0 1px 0 color-mix(in srgb, var(--bg) 70%, transparent); }
-  .count { pointer-events: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 10px 14px; text-align: right; box-shadow: var(--shadow); }
-  .count .d { font: 600 2.2rem/1 var(--read); color: var(--ink); font-variant-numeric: tabular-nums; }
-  .count small { display: block; color: var(--ink-2); font-size: .8rem; max-width: 12rem; }
-  .travel { position: absolute; bottom: 14px; right: 16px; display: flex; gap: 6px; }
-  .travel .iconbtn { background: var(--surface); }
-  .j-fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 24px; color: var(--ink-2); }
-  .home-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 22px; padding-top: 26px; padding-bottom: 10px; }
-  .wod { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 16px 18px; box-shadow: var(--shadow); }
-  .wod .w { font: 600 1.6rem var(--read); margin: 0; }
-  .wod .pos { color: var(--ink-2); font-style: italic; margin: 0 0 6px; }
-  .wod .wex { display: block; font-family: var(--read); font-style: italic; color: var(--ink-2); margin-top: 6px; }
-  .units { list-style: none; padding: 0; margin: 10px 0 0; counter-reset: u; }
-  .units li { display: grid; grid-template-columns: 4.2rem 1fr auto; gap: 12px; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--line); }
-  .units .m { color: var(--lamp-ink); font-weight: 700; }
-  .units h3 { margin: 0 0 2px; font-size: 1.12rem; }
-  .units p { margin: 0; color: var(--ink-2); font-size: .95rem; }
-  .units .th { font-size: .85rem; color: var(--sea); margin-top: 3px; display: block; }
-  .units li.soon h3 { color: var(--ink-2); }
-  .state { font: 600 .82rem var(--ui); color: var(--ink-2); white-space: nowrap; }
-  .state.done { color: var(--ok); }
-  .wave-sep { height: 18px; }
-  @media (max-width: 760px) {
-    .home-grid { grid-template-columns: 1fr; }
-    .j-over .wrap { flex-direction: column; gap: 8px; }
-    .count { text-align: left; display: flex; gap: 10px; align-items: baseline; padding: 6px 12px; }
-    .count .d { font-size: 1.5rem; }
-    .units li { grid-template-columns: 3.2rem 1fr; }
-    .units .go { grid-column: 2; }
-    .j-title h1 { font-size: 1.35rem; }
-    .j-title p { font-size: .92rem; }
-  }
-</style>
+
+<title>English G12: the official English paper, skill by skill</title>
+<meta name="description" content="Free preparation for the Lebanese official English exam, Grade 12 Life Sciences and Sociology & Economics: every question type on the paper, how it is marked, and how to answer it.">
 </head>
-<body>
+<body data-nav="paper">
+<a class="skip" href="#main">Skip to content</a>
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="index.html">
-      <svg viewBox="0 0 26 26" aria-hidden="true"><path d="M13 2 L17 6 H9 Z" fill="var(--sea)"/><rect x="9" y="6" width="8" height="5" rx="1" fill="var(--lamp)"/><path d="M8.5 11 H17.5 L19.5 24 H6.5 Z" fill="none" stroke="var(--ink)" stroke-width="1.8"/><path d="M7.6 17 H18.4" stroke="var(--sea)" stroke-width="3"/></svg>
+    <a class="brand" href="index.html" aria-label="English G12, home: the paper">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="5" y="2.5" width="16" height="21" rx="1.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/><path d="M8.5 8h9M8.5 11.5h9M8.5 15h5.5" stroke="var(--ink-2)" stroke-width="1.4" stroke-linecap="round"/><path d="M14.5 18.5l2 2 4-5" stroke="var(--pen)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>English G12</span>
     </a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="index.html" data-nav="paper">The paper</a>
+      <a href="reading/index.html" data-nav="reading">Reading room</a>
+    </nav>
     <div class="spacer"></div>
     <div class="seg" role="group" aria-label="My section">
       <button type="button" data-section-btn="ls" aria-pressed="true" title="Life Sciences">LS</button>
@@ -88,92 +40,102 @@
   </div>
 </header>
 
-<main>
-  <section class="journey" aria-label="Your year journey">
-    <div id="j3d" style="position:absolute;inset:0"></div>
-    <div class="jlabels" id="jlabels"></div>
-    <div class="j-over">
-      <div class="wrap">
-        <div class="j-title">
-          <h1>From November to the June exam</h1>
-          <p>One lighthouse per unit. Finish both sessions and it lights up.</p>
-        </div>
-        <div class="count" aria-live="polite"><span class="d" id="days">—</span><small>days to the official exam<span id="days-note" style="display:block;opacity:.8"></span></small></div>
-      </div>
-    </div>
-    <div class="travel"><button class="iconbtn" type="button" data-travel="-1" aria-label="Earlier units"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg></button><button class="iconbtn" type="button" data-travel="1" aria-label="Later units"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></button></div>
-    <div class="j-fallback" id="jfallback" hidden><p>The 3D coastline needs WebGL, which this browser has turned off. Everything else works: your units are listed below.</p></div>
-  </section>
 
-  <div class="wrap home-grid">
-    <section aria-labelledby="units-h">
-      <h2 id="units-h">Your units</h2>
-      <p class="muted" style="margin:0">Each unit is two sessions of about 2½ hours: lesson, flip cards, practice. Reading texts follow your section’s themes.</p>
-      <ol class="units" id="unit-list"></ol>
-    </section>
-    <aside>
-      <div class="nour" style="margin-bottom:18px"><span id="nour-svg"></span><div class="bubble"><b>Nour says</b><br><span id="season"></span><span id="streak" style="display:block;margin-top:6px;color:var(--sea)"></span></div></div>
-      <div class="wod" aria-labelledby="wod-h">
-        <h2 id="wod-h" style="font-size:1rem;font-family:var(--ui);color:var(--ink-2);margin:0 0 6px">Word of the day</h2>
+<main id="main" class="desk">
+  <div class="wrap">
+    <article class="sheet" aria-labelledby="sheet-title">
+      <div class="sheet-head" aria-hidden="true">
+        <div class="ar l">وزارة التربية والتعليم العالي<br>المديرية العامة للتربية<br>دائرة الامتحانات الرسمية</div>
+        <div class="c">مسابقة في مادة اللغة الإنكليزية<br><span style="font-weight:400">المدة: ساعتان ونصف</span></div>
+        <div class="ar">امتحانات الشهادة الثانوية العامة<br><span data-sec="ls">فرعا العلوم العامة وعلوم الحياة</span><span data-sec="se" hidden>فرع الاجتماع والاقتصاد</span></div>
+      </div>
+
+      <div class="total" aria-live="polite">
+        <div class="ring"><div><span class="n" id="total-n">0</span><span class="of"> / 20</span></div></div>
+        <small>marks you are ready for</small>
+      </div>
+
+      <div class="sheet-id">
+        <label for="name">Name:</label> <input id="name" type="text" autocomplete="given-name" placeholder="your name" maxlength="24">
+        <span class="muted" style="font-size:.9rem">The official English paper, Grade 12 <span data-sec-text='{"ls":"Life Sciences","se":"Sociology and Economics"}'>Life Sciences</span>. Tap any question type to learn it.</span>
+      </div>
+      <h1 id="sheet-title" class="sr">The official English paper, skill by skill</h1>
+
+      <div id="paper"></div>
+      <p class="comment" id="comment"></p>
+    </article>
+
+    <div class="beside">
+      <section class="door" aria-labelledby="rr-h">
+        <h2 id="rr-h">Reading room</h2>
+        <p>Original exam-style texts on your section’s themes, read aloud by a natural voice, each with a full set of exam questions.</p>
+        <a class="btn small" href="reading/index.html">Open the reading room</a>
+      </section>
+      <section class="door" aria-labelledby="wod-h">
+        <h2 id="wod-h">Word of the day</h2>
         <p class="w" id="wod-w"></p>
         <p class="pos" id="wod-p"></p>
-        <p style="margin:0" id="wod-d"></p>
+        <p style="color:var(--ink)" id="wod-d"></p>
         <p class="wex" id="wod-e"></p>
-        <button class="btn small ghost" type="button" id="wod-say" style="margin-top:10px">Hear it</button>
-      </div>
-      <div class="wod" style="margin-top:18px">
-        <h2 style="font-size:1.05rem;margin:0 0 4px">Official exams</h2>
-        <p class="muted" style="margin:0">Past LS and SE papers, retyped with the official marks and grading schemes, arrive at the end of the journey.</p>
-      </div>
-    </aside>
+        <button class="btn small ghost" type="button" id="wod-say">Hear it</button>
+      </section>
+      <section class="door" aria-labelledby="cd-h">
+        <h2 id="cd-h">Days to the exam</h2>
+        <p class="count-n" id="days">—</p>
+        <p id="days-note"></p>
+        <p>Past official papers, retyped with their marks and grading schemes, are on the way.</p>
+      </section>
+    </div>
   </div>
 </main>
 
-<footer class="site"><div class="wrap">English G12, Tutoring Centre. Built for Grade 12 LS and SE students preparing the Lebanese official exams. Content follows the CRDP circulars and official papers; reading texts in the units are original practice texts.</div></footer>
+<footer class="site"><div class="wrap">
+  <p>English G12: a free companion for Grade 12 Life Sciences and Sociology &amp; Economics students preparing the Lebanese official English exam.</p>
+  <p>Paper structure, instructions and marking follow the CRDP official papers and grading schemes. Reading texts on this site are original practice texts. Voices are generated with the open-source Kokoro model.</p>
+</div></footer>
+
 
 <script>
 window.addEventListener("egp-ready", function () {
-  var EGP = window.EGP, units = window.EGP_UNITS || [], prog = EGP.progress();
-  // countdown
-  var d = EGP.daysToExam();
-  document.getElementById("days").textContent = d;
-  document.getElementById("days-note").textContent = (window.EGP_EXAM || {}).estimated ? "estimated date" : "";
-  // companion
-  document.getElementById("nour-svg").innerHTML = EGP.nourSVG;
-  document.getElementById("season").textContent = EGP.seasonNote();
-  document.getElementById("streak").textContent = EGP.streakNote();
-  var w = EGP.wordOfDay();
-  document.getElementById("wod-w").textContent = w[0];
-  document.getElementById("wod-p").textContent = w[1];
-  document.getElementById("wod-d").textContent = w[2];
-  document.getElementById("wod-e").textContent = w[3];
-  var say = document.getElementById("wod-say");
-  if (!("speechSynthesis" in window)) say.hidden = true;
-  say.addEventListener("click", function () { speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(w[0] + ". " + w[3]); u.lang = "en-GB"; u.rate = 0.9; speechSynthesis.speak(u); });
-  // unit list (the accessible version of the journey)
-  var list = document.getElementById("unit-list"), sec = EGP.section();
-  function renderList() {
-    sec = EGP.section();
-    list.innerHTML = units.map(function (u) {
-      var p = prog[u.id] || {}, done = p.s1 && p.s2, half = p.s1 || p.s2;
-      var state = u.status !== "live" ? "Coming" : done ? "Finished ✓" : half ? "1 of 2 sessions" : "Open";
-      return '<li class="' + (u.status === "live" ? "" : "soon") + '"><span class="m">' + u.month + '</span><div><h3>' +
-        (u.status === "live" ? '<a href="' + u.href + '">' + u.n + ". " + EGP.esc(u.title) + "</a>" : u.n + ". " + EGP.esc(u.title)) +
-        "</h3><p>" + EGP.esc(u.blurb) + '</p><span class="th">Text theme: ' + EGP.esc(u.themes[sec]) + '</span></div><span class="state go' + (done ? " done" : "") + '">' + state + "</span></li>";
-    }).join("");
+  var EGP = window.EGP;
+  // the paper
+  function render() {
+    var ready = EGP.readySet(), marks = EGP.marks(), html = "";
+    (window.EGP_PAPER || []).forEach(function (p) {
+      html += '<section class="part"><div class="part-h"><h2>Part ' + p.part + ": " + p.title + '</h2><span class="score">(Score: ' + p.score + "/20)</span></div>";
+      if (p.note) html += '<p class="pnote">' + EGP.esc(p.note) + "</p>";
+      p.sections.forEach(function (s) {
+        var got = marks.by[s.key] || 0;
+        html += '<div class="sec"><div class="sec-ins"><span class="L">' + (s.letter ? s.letter + "." : "") + '</span><div><span class="what">' + EGP.esc(s.title) + "</span>" + EGP.esc(s.instruction) + "</div></div>";
+        html += '<div class="skills">' + s.skills.map(function (k) {
+          var t = ready[k.id] ? '<span class="tick" aria-label="ready">✓</span>' : "";
+          return k.status === "live"
+            ? '<a class="skill" href="skills/' + k.id + '/index.html">' + t + EGP.esc(k.title) + "</a>"
+            : '<span class="skill soon" title="Coming soon">' + EGP.esc(k.title) + "</span>";
+        }).join("") + "</div>";
+        if (s.marks) html += '<div class="mbox" aria-label="' + got + " of " + s.marks + ' marks ready"><span class="got">' + (got ? EGP.fmt(got) : "") + '</span><span class="max">' + EGP.fmt(s.marks) + "</span></div>";
+        html += "</div>";
+      });
+      html += "</section>";
+    });
+    document.getElementById("paper").innerHTML = html;
+    document.getElementById("total-n").textContent = EGP.fmt(marks.total);
+    document.getElementById("comment").textContent = EGP.comment();
   }
-  renderList();
-  window.addEventListener("egp-section", renderList);
-  // 3D journey, only when WebGL works
-  var host = document.getElementById("j3d"), fb = document.getElementById("jfallback");
-  var gl = false;
-  try { var c = document.createElement("canvas"); gl = !!(window.WebGLRenderingContext && (c.getContext("webgl2") || c.getContext("webgl"))); } catch (e) {}
-  if (!gl) { fb.hidden = false; document.querySelector(".travel").hidden = true; return; }
-  var travelFn = null;
-  document.querySelectorAll("[data-travel]").forEach(function (b) { b.addEventListener("click", function () { travelFn && travelFn(+b.dataset.travel); }); });
-  import("./assets/js/journey.js").then(function (m) {
-    m.startJourney(host, document.getElementById("jlabels"), { units: units, progress: prog, onTravel: function (fn) { travelFn = fn; } });
-  }).catch(function () { fb.hidden = false; });
+  render();
+  window.addEventListener("egp-ready-change", render);
+  // name, kept on this device
+  var nm = document.getElementById("name");
+  nm.value = EGP.store.get("name", "");
+  nm.addEventListener("input", function () { EGP.store.set("name", nm.value); });
+  // countdown
+  document.getElementById("days").textContent = EGP.daysToExam();
+  document.getElementById("days-note").textContent = (window.EGP_EXAM || {}).estimated ? "Estimated date, updated when the Ministry announces the exam." : "";
+  // word of the day, natural voice
+  var w = EGP.wordOfDay();
+  ["w", "p", "d", "e"].forEach(function (k, i) { document.getElementById("wod-" + k).textContent = w[i]; });
+  var say = document.getElementById("wod-say"), clip = null;
+  say.addEventListener("click", function () { if (!clip) clip = new Audio(EGP.wordAudio(w[0])); clip.currentTime = 0; clip.play().catch(function () { say.textContent = "Audio unavailable"; }); });
 });
 </script>
 </body>

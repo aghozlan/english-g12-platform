@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>Correcting false statements · English G12</title>
+<meta name="description" content="The false-statements question of the Lebanese official English paper: the six traps examiners use, and how to rewrite a statement correctly for the half mark.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/skill.js" defer></script>
+</head>
+<body data-skill="false-statements" data-nav="paper">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap skill-page">
+  <div id="skill-top"></div>
+  <header class="skill-head">
+    <h1>Correcting false statements</h1>
+    <p class="lead">Each false statement is a true idea from the text with one thing changed. Find the change, put it right, and the half mark is yours.</p>
+    <div id="skill-badge"></div>
+  </header>
+
+  <section class="block">
+    <h2><span class="k">On the paper</span>Same task, different letters</h2>
+    <div class="onpaper">B. The following statements are false because they misinterpret the meaning stated or conveyed in the selection above. Rewrite them correctly.<span class="src">LS, June 2019. Earlier papers put it in Section D or E: “…because they misinterpret the writer’s ideas. Rewrite them correctly.”</span></div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">How it’s marked</span>Fix only what is wrong</h2>
+    <div class="marking">
+      <p style="margin:0 0 6px">Statement: <i>Diabetes 1 can be cured by regular doses of insulin.</i></p>
+      <p style="margin:0 0 6px">Official correction (LS 2019): <i>Diabetes 1 can be <b>treated</b> by regular doses of insulin.</i> <span class="hand">0.5</span></p>
+      <p style="margin:0">One word was wrong, so one word changed. When a statement can be fixed in two ways, the scheme accepts both, for example “during the day and night” or “more concerned … during the night”.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The method</span>The six traps</h2>
+    <div class="scroll-x"><table class="t">
+      <tr><th>Trap</th><th>What changed</th></tr>
+      <tr><td><b>Antonym</b></td><td>A word replaced by its opposite: later → <i>earlier</i>, harder → <i>easier</i>.</td></tr>
+      <tr><td><b>Tense</b></td><td>The time moved: is falling asleep → <i>used to fall asleep</i>.</td></tr>
+      <tr><td><b>General ↔ specific</b></td><td>“some” becomes “all”, “often” becomes “always”, “only” is added.</td></tr>
+      <tr><td><b>Cause ↔ effect</b></td><td>The result is presented as the cause.</td></tr>
+      <tr><td><b>Wrong person</b></td><td>An act or an opinion is given to someone else.</td></tr>
+      <tr><td><b>Wrong order</b></td><td>The sequence of events is changed: before ↔ after.</td></tr>
+    </table></div>
+    <ol class="steps">
+      <li>Find the sentence in the text that the statement is built on.</li>
+      <li>Put them side by side and spot the <b>one</b> difference.</li>
+      <li>Rewrite the <b>whole statement</b> with that part corrected. No “This is false because…”.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">Try it</span>Trap spotter</h2>
+    <p>For each false statement from your section’s text, name the trap. The correction appears when you find it.</p>
+    <div class="lab" data-lab="traps">
+      <div class="trap-list"></div>
+      <script type="application/json" class="lab-data">{
+        "ls": [
+          ["Only a few sleep scientists believe that teenagers need eight to ten hours of sleep a night.", 2, "Sleep scientists agree that teenagers need between eight and ten hours of sleep a night.", "A general agreement was narrowed to “only a few”."],
+          ["Poor grades cause teenagers to sleep late.", 3, "Sleeping late causes teenagers’ grades to fall.", "Cause and effect were swapped."],
+          ["Karim’s mother tried the phone basket for a month.", 4, "Karim tried the phone basket for a month.", "The act was given to another person."],
+          ["Energy drinks make it easier to fall asleep the following night.", 0, "Energy drinks make it harder to fall asleep the following night.", "“Easier” is the opposite of the text’s “harder”."],
+          ["Karim used to fall asleep before midnight before he tried the basket.", 1, "Karim began falling asleep before midnight after trying the basket.", "The time was moved into the past."]
+        ],
+        "se": [
+          ["All young adults in the survey get their news mainly from social media.", 2, "Three out of four young adults in the survey get their news mainly from social media.", "“All” replaced “three out of four”."],
+          ["Divided communities cause false news to appear.", 3, "False news, shown to like-minded users, divides communities.", "Cause and effect were swapped."],
+          ["Rana says that attention has become the product.", 4, "Ziad Khoury says that attention has become the product.", "The words belong to the lecturer."],
+          ["Algorithms push calm facts to the top of the feed.", 0, "Algorithms push the most alarming posts to the top of the feed.", "Calm facts are the opposite of alarming posts."],
+          ["Rana checked the photo before sharing it.", 5, "Rana shared the photo at once and only later learned it was old.", "The order of events was changed."]
+        ]
+      }</script>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Check yourself</h2>
+    <div class="check">
+      <div class="quiz" data-a="1" data-ok="Exactly. The trap was “all”; only some families use the basket. Everything else stays.">
+        <p>False: <i>All families have introduced a phone basket.</i> Which correction earns the 0.5?</p>
+        <div class="opts">
+          <button class="chip" data-why="That explains instead of correcting. Write the corrected statement.">This is false because the writer does not say all families.</button>
+          <button class="chip">Some families have introduced a phone basket in the living room.</button>
+          <button class="chip" data-why="That adds a new idea and drops the basket.">Families should use phones less at night.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-a="2" data-ok="Right. Before ↔ after is the order trap.">
+        <p>Text: <i>She learned the truth after she had shared the photo.</i> False: <i>She learned the truth before she shared the photo.</i> Which trap?</p>
+        <div class="opts"><button class="chip" data-why="No word was replaced by an opposite meaning of the idea itself; the sequence changed.">Antonym</button><button class="chip" data-why="No one else was given the act.">Wrong person</button><button class="chip">Wrong order</button></div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+    <div id="skill-ready"></div>
+  </section>
+
+  <section class="block">
+    <h2>Revise</h2>
+    <div class="deck-bar"><p class="muted" style="margin:0">Tap to flip. <b data-due></b></p><div class="row"><button class="btn small ghost" data-flip-all>Flip all</button></div></div>
+    <div class="cards small">
+      <div class="card" id="fs-1"><div class="in"><div class="face front"><span class="box"></span><span class="big">The six traps</span></div><div class="face back"><p>Antonym, tense, general/specific, cause/effect, wrong person, wrong order.</p><div class="grade"><button class="btn small ghost" data-grade="again">Again</button><button class="btn small ghost" data-grade="good">Good</button></div></div></div></div>
+      <div class="card" id="fs-2"><div class="in"><div class="face front"><span class="box"></span><span class="big">Absolute words</span></div><div class="face back"><p><i>all, always, every, only, never</i> replacing <i>some, often, a few</i>: the general/specific trap.</p><div class="grade"><button class="btn small ghost" data-grade="again">Again</button><button class="btn small ghost" data-grade="good">Good</button></div></div></div></div>
+      <div class="card" id="fs-3"><div class="in"><div class="face front"><span class="box"></span><span class="big">The correction</span></div><div class="face back"><p>The whole statement, rewritten, with <b>only</b> the wrong part fixed.</p><div class="grade"><button class="btn small ghost" data-grade="again">Again</button><button class="btn small ghost" data-grade="good">Good</button></div></div></div></div>
+    </div>
+  </section>
+
+  <nav id="skill-pager" class="pager" aria-label="More skills"></nav>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

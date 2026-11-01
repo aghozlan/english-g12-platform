@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../../partials/head.html}}
+<title>Answering in your own words (Section A) · English G12</title>
+<meta name="description" content="Section A of the Lebanese official English paper: answer in 1–4 complete sentences using your own words. How it is marked, a method, and an own-words meter.">
+<script src="{{root}}assets/js/labs.js" defer></script>
+<script src="{{root}}assets/js/skill.js" defer></script>
+</head>
+<body data-skill="own-words" data-nav="paper">
+{{> ../../../partials/topbar.html}}
+<main id="main" class="wrap skill-page">
+  <div id="skill-top"></div>
+  <header class="skill-head">
+    <h1>Answering in your own words</h1>
+    <p class="lead">Section A is the biggest block of reading marks. The questions are often easy; the marks are lost in how the answer is written.</p>
+    <div id="skill-badge"></div>
+  </header>
+
+  <section class="block">
+    <h2><span class="k">On the paper</span>The instruction, and how it varies</h2>
+    <div class="onpaper">A. Answer each of the following questions in 1-4 complete sentences using your own words.<span class="src">LS and SE papers, 2017–2019</span></div>
+    <div class="onpaper">A. In 2-4 sentences, answer the following in your own words.<span class="src">Earlier LS papers. Sometimes “1–3 sentences”: always read the number.</span></div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">How it’s marked</span>One idea, half a mark</h2>
+    <div class="marking">In the official grading schemes, a <span class="hand">(01)</span> question is split into two ideas: <span class="hand">0.5 for each</span>. Reasonable answers in other words are accepted (“any other reasonable answer is acceptable”). An answer copied line by line from the text, or a single idea stretched over four sentences, loses marks.</div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">See it done</span>The official answer to a real question</h2>
+    <div class="model">
+      <div class="q"><b>Question</b> (LS, June 2019): Based on Paragraph 1, identify two reasons behind the mother’s sadness. (01)</div>
+      <div class="a">First, the mother was sad because she knew that her 10-year-old daughter had Diabetes 1. Second, she did not have enough information about Diabetes 1.</div>
+      <p class="why"><span class="hand">0.5 for each</span> says the grading scheme. Notice the shape: it <b>echoes the question</b> (“the mother was sad because”), <b>numbers the ideas</b> (First… Second…), uses <b>complete sentences</b>, and stops when the two ideas are given.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">The method</span>Four habits</h2>
+    <ol class="steps">
+      <li><b>Echo the question</b> in your first words, so the answer stands alone: “The first reason was…”.</li>
+      <li><b>Count the marks.</b> (01) usually means two ideas. Plan them: <i>first… second…</i></li>
+      <li><b>Rephrase</b>: change the words and the structure, keep the meaning. Names, numbers and technical terms can stay.</li>
+      <li><b>Stop</b> when the ideas are given. Four sentences is a maximum, not a target.</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2><span class="k">Try it</span>The own-words meter</h2>
+    <p>Choose a sentence from your section’s text and rewrite it. Every run of four or more words that also appears in the original is highlighted.</p>
+    <div hidden aria-hidden="true"><div data-sec="ls">{{> ../../../texts/wired-awake.html|ow}}</div><div data-sec="se">{{> ../../../texts/price-of-a-click.html|ow}}</div></div>
+    <div class="lab" data-lab="ownwords">
+      <label for="ow-src"><b>Sentence to rephrase</b></label>
+      <select id="ow-src" style="width:100%;margin:6px 0 10px;font:inherit;padding:8px;border-radius:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink)"></select>
+      <blockquote class="ow-orig" style="margin:0 0 10px;font-family:var(--read);border-left:3px solid var(--line);padding-left:12px"></blockquote>
+      <label for="ow-in"><b>Your version</b></label>
+      <textarea id="ow-in" placeholder="Write the same idea in your own words…"></textarea>
+      <div class="stat-row"><span>Copied: <b data-out="pct">0%</b></span><span>Words: <b data-out="words">0</b></span><span>Sentences: <b data-out="sent">0</b></span></div>
+      <div class="meter" aria-hidden="true"><i></i></div>
+      <div class="ow-show" style="margin-top:8px;font-size:.95rem"></div>
+      <div class="feedback" data-out="advice"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Check yourself</h2>
+    <div class="check">
+      <div class="quiz" data-a="1" data-ok="Yes. It echoes the question, gives two numbered ideas, and is written in the student’s own words.">
+        <p>Question: <i>Identify two signs that Karim’s night is not a healthy one. (01)</i> Which answer earns the full mark?</p>
+        <div class="opts">
+          <button class="chip" data-why="That copies the text and gives only one sign: 0.5 at most.">It is 1:40 a.m. in a quiet apartment in Saida, and Karim, seventeen, is still awake.</button>
+          <button class="chip">First, Karim is still up long after midnight before a school day. Second, he keeps promising to stop watching videos but cannot.</button>
+          <button class="chip" data-why="One idea, stretched. Two ideas are needed.">Karim is clearly very tired and he really needs to sleep more because sleep is important for everyone.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+      <div class="quiz" data-a="0" data-ok="Right. A name, a number or a technical term cannot be paraphrased, and does not need to be.">
+        <p>Which words can you keep exactly as they are in the text?</p>
+        <div class="opts"><button class="chip">Names, numbers and technical terms such as “melatonin”.</button><button class="chip" data-why="That is copying: the language mark suffers.">Whole sentences, if they answer the question.</button><button class="chip" data-why="Some words must stay: you cannot rename Saida.">None at all.</button></div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+    <div id="skill-ready"></div>
+  </section>
+
+  <section class="block">
+    <h2>Practise on a full text</h2>
+    <p>Every text in the <a href="{{root}}reading/index.html">reading room</a> has a Section A with model answers and the marking points.</p>
+  </section>
+
+  <nav id="skill-pager" class="pager" aria-label="More skills"></nav>
+</main>
+{{> ../../../partials/footer.html}}
+</body>
+</html>

@@ -150,7 +150,7 @@
       const box = ex.querySelector("input.done");
       if (!box) return;
       box.checked = !!done[ex.dataset.ex];
-      box.addEventListener("change", () => { done[ex.dataset.ex] = box.checked ? 1 : 0; EGP.store.set("exdone", done); EGP.checkUnitDone && EGP.checkUnitDone(); });
+      box.addEventListener("change", () => { done[ex.dataset.ex] = box.checked ? 1 : 0; EGP.store.set("exdone", done); });
     });
   }
 
@@ -162,6 +162,8 @@
         const right = String(i) === q.dataset.a;
         $$(".opts button", q).forEach((x) => x.classList.remove("ok", "no"));
         b.classList.add(right ? "ok" : "no");
+        if (right) q.dataset.solved = "1";
+        window.dispatchEvent(new CustomEvent("egp-quiz", { detail: { quiz: q, right } }));
         if (fb) { fb.className = "feedback " + (right ? "ok" : "no"); fb.innerHTML = right ? (q.dataset.ok || "Yes.") : (b.dataset.why || q.dataset.no || "Not quite. Look again."); }
       }));
     });
@@ -208,21 +210,24 @@
     });
   }
 
-  /* ---------- progress (sessions finished), used by the Year Journey ---------- */
-  EGP.progress = () => EGP.store.get("progress", {});
-  EGP.markSession = (unit, s, val = true) => { const p = EGP.progress(); p[unit] = p[unit] || {}; p[unit][s] = val; EGP.store.set("progress", p); };
-  function initSessionDone() {
-    $$("[data-session-done]").forEach((b) => {
-      const [unit, s] = b.dataset.sessionDone.split(":");
-      const set = () => { const v = !!(EGP.progress()[unit] || {})[s]; b.setAttribute("aria-pressed", v ? "true" : "false"); b.textContent = v ? "Session finished ✓" : "Mark this session as finished"; };
-      set();
-      b.addEventListener("click", () => {
-        const v = !(EGP.progress()[unit] || {})[s];
-        EGP.markSession(unit, s, v); set();
-        const p = EGP.progress()[unit] || {};
-        if (v && p.s1 && p.s2) EGP.celebrate && EGP.celebrate(unit); else if (v) EGP.toast("Saved. Your lighthouse is getting brighter.");
-      });
-    });
+  /* ---------- readiness: a skill marked "ready" earns its share of the paper's marks ---------- */
+  EGP.readySet = () => EGP.store.get("ready", {});
+  EGP.isReady = (id) => !!EGP.readySet()[id];
+  EGP.setReady = (id, v) => { const r = EGP.readySet(); if (v) r[id] = 1; else delete r[id]; EGP.store.set("ready", r); window.dispatchEvent(new Event("egp-ready-change")); };
+  EGP.marks = () => {
+    const r = EGP.readySet(); const by = {}; let total = 0;
+    (window.EGP_PAPER || []).forEach((p) => p.sections.forEach((s) => {
+      let got = 0; s.skills.forEach((k) => { if (r[k.id]) got += k.w; });
+      by[s.key] = Math.round(got * 4) / 4; total += got;
+    }));
+    return { by, total: Math.round(total * 4) / 4 };
+  };
+  EGP.fmt = (n) => String(Math.round(n * 100) / 100);
+  EGP.url = (p) => (window.EGP_ROOT || "") + p;
+
+  function initNav() {
+    const cur = document.body.dataset.nav;
+    $$(".mainnav a").forEach((a) => { if (a.dataset.nav === cur) a.setAttribute("aria-current", "page"); });
   }
 
   /* ---------- visits: a gentle streak (never punishing) ---------- */
@@ -239,7 +244,7 @@
     initTheme(); initSection();
     const ok = await EGP.gate();
     if (!ok) return;
-    initSubtabs(); initSteps(); initGlossary(); initAnswers(); initQuiz(); initCards(); initSessionDone();
+    initNav(); initSubtabs(); initSteps(); initGlossary(); initAnswers(); initQuiz(); initCards();
     EGP.visit();
     window.dispatchEvent(new Event("egp-ready"));
     EGP.ready = true;

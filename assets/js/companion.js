@@ -1,14 +1,12 @@
 /* =========================================================
-   The companion: Nour (an original lighthouse character), word of the day,
-   a gentle streak, seasonal notes and a short celebration when a unit is done.
+   The companion: word of the day (with a natural voice), a gentle streak,
+   the examiner's margin comment, and a short note when a skill is ready.
    ========================================================= */
 (function () {
   "use strict";
   const EGP = (window.EGP = window.EGP || {});
 
-  EGP.nourSVG = '<svg viewBox="0 0 46 64" aria-hidden="true"><path d="M23 2 L30 10 L16 10 Z" fill="var(--sea)"/><rect x="15" y="10" width="16" height="9" rx="2" fill="var(--lamp)"/><path d="M14 19 H32 L35 60 H11 Z" fill="var(--surface)" stroke="var(--ink)" stroke-width="2"/><path d="M13.2 31 H32.8 L33.4 40 H12.6 Z" fill="var(--sea)"/><path d="M12 48 H34 L34.6 56 H11.4 Z" fill="var(--sea)"/><circle cx="19.5" cy="25" r="1.6" fill="var(--ink)"/><circle cx="26.5" cy="25" r="1.6" fill="var(--ink)"/><path d="M20 28.2 Q23 30.6 26 28.2" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="8" y="59" width="30" height="4" rx="2" fill="var(--ink)"/></svg>';
-
-  /* Exam vocabulary from the course: tone words, devices, connectors and question words. */
+  /* Exam vocabulary: tone words, devices, connectors and question words. */
   EGP.WORDS = [
     ["infer", "verb", "to work out a meaning the writer suggests but does not state", "From her shaking hands, we can infer that she was afraid."],
     ["credible", "adjective", "able to be believed; supported by good evidence", "The writer quotes a doctor to make the claim credible."],
@@ -55,23 +53,24 @@
     const day = Math.floor(Date.now() / 864e5);
     return EGP.WORDS[day % EGP.WORDS.length];
   };
+  EGP.wordAudio = (w) => (window.EGP_ROOT || "") + "audio/words/" + w.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "") + ".m4a";
 
   EGP.daysToExam = () => {
     const d = new Date((window.EGP_EXAM || {}).date || "2027-06-15");
     return Math.max(0, Math.ceil((d - Date.now()) / 864e5));
   };
 
-  /* A short, warm note that changes with the season of the school year. */
-  EGP.seasonNote = () => {
+  /* The examiner's margin comment on the home sheet: warm, specific, never harsh. */
+  EGP.comment = () => {
     const days = EGP.daysToExam();
-    const m = new Date().getMonth(); // 0 = January
-    if (days === 0) return "Exam day. Read the questions first, breathe, and trust the work you have done.";
-    if (days <= 7) return "One week left. Sleep well, revise lightly, and reread your best essay plans. You are ready for more than you think.";
-    if (days <= 30) return "The last 30 days. One past paper every two days, timed, then compare with the official answers. Small, steady steps.";
-    if (m === 11 || m === 0) return "Mid-year: a good moment to look back. Which question type still makes you hesitate? Give it ten minutes a day.";
-    if (m >= 8 && m <= 10) return "A new year and a long coastline ahead. One lighthouse at a time: today, just one step.";
-    if (m >= 1 && m <= 3) return "Spring is the writing season. Plan one essay outline a week, even when you do not write the whole essay.";
-    return "Keep the rhythm: a little reading every day beats a lot once a week.";
+    const m = EGP.marks ? EGP.marks().total : 0;
+    if (days === 0) return "Exam day. Read the questions first, breathe, and trust your work.";
+    if (days <= 7) return "One week left. Sleep well, revise lightly, reread your best essay plans.";
+    if (days <= 30) return "Last 30 days: one past paper every two days, timed. Small, steady steps.";
+    if (m === 0) return "Start anywhere. Most students begin with Section A: four marks, and every other section uses the same habits.";
+    if (m < 5) return "A good start. Section B and Section F are quick marks; try them next.";
+    if (m < 12) return "Solid progress. The analysis questions in Section C are where strong students pull ahead.";
+    return "Impressive. Keep reading one text a week so the skills stay sharp.";
   };
 
   EGP.streakNote = () => {
@@ -83,17 +82,9 @@
     return "";
   };
 
-  /* Celebrate a finished unit (both sessions marked). */
-  EGP.celebrate = (unit) => {
-    const u = (window.EGP_UNITS || []).find((x) => x.id === unit);
-    const next = (window.EGP_UNITS || []).find((x) => u && x.n === u.n + 1);
-    const box = document.querySelector(".unit-done");
-    const msg = "Lighthouse " + (u ? u.n : "") + " is lit. " + (next ? "Next stop: " + next.title.toLowerCase() + "." : "That was the last stop before the exam.");
-    if (box) {
-      box.hidden = false;
-      box.innerHTML = '<div class="nour">' + EGP.nourSVG + '<div class="bubble"><b>' + EGP.esc(msg) + "</b><br>You did the reading, the cards and the practice. That is real work, and it shows.</div></div>";
-      box.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-    EGP.toast(msg);
+  /* A short note when a skill is marked ready. */
+  EGP.celebrate = (skill) => {
+    const m = EGP.marks().total;
+    EGP.toast("Ready ✓  Your paper now shows " + EGP.fmt(m) + " / 20.");
   };
 })();

@@ -10,7 +10,7 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const outDir = process.argv[2] || path.join(root, "_raw", "shots");
 fs.mkdirSync(outDir, { recursive: true });
-const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".pdf": "application/pdf", ".json": "application/json" };
+const types = { ".m4a": "audio/mp4", ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".pdf": "application/pdf", ".json": "application/json" };
 const server = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split("?")[0]); if (p.endsWith("/")) p += "index.html";
   const f = path.join(root, p);
@@ -22,8 +22,12 @@ const server = http.createServer((req, res) => {
   await new Promise((r) => server.listen(0, r));
   const base = "http://127.0.0.1:" + server.address().port;
   const browser = await chromium.launch({ args: ["--use-gl=swiftshader", "--enable-webgl", "--ignore-gpu-blocklist"] });
-  const units = fs.readdirSync(path.join(root, "units")).filter((d) => fs.existsSync(path.join(root, "units", d, "index.html")));
-  const pages = [["home", "/index.html"], ...units.map((u) => [u, "/units/" + u + "/index.html"])];
+  const pages = [["home", "/index.html"]];
+  for (const dir of ["reading", "skills"]) {
+    const d = path.join(root, dir);
+    if (fs.existsSync(path.join(d, "index.html"))) pages.push([dir, "/" + dir + "/index.html"]);
+    if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) if (fs.existsSync(path.join(d, f, "index.html"))) pages.push([dir + "-" + f, "/" + dir + "/" + f + "/index.html"]);
+  }
   let fails = 0;
   for (const [w, h, dev] of [[390, 844, "phone"], [1280, 860, "desktop"]]) {
     for (const scheme of ["light", "dark"]) {
