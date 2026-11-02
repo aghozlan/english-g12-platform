@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/platform.css">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("egp.theme");if(t)document.documentElement.setAttribute("data-theme",JSON.parse(t));var s=localStorage.getItem("egp.section");document.documentElement.dataset.section=s?JSON.parse(s):"ls"}catch(e){}</script>
+<script>window.EGP_ROOT = "../";</script>
+<script src="../assets/js/catalog.js" defer></script>
+<script src="../assets/js/companion.js" defer></script>
+<script src="../assets/js/config.js" defer></script>
+<script src="../assets/js/student.js" defer></script>
+<script src="../assets/js/platform.js" defer></script>
+
+<title>Teacher dashboard · English G12</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="../assets/js/teacher.js" defer></script>
+</head>
+<body data-nogate data-nav="teacher">
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="../index.html" aria-label="English G12, home: the paper">
+      <svg viewBox="0 0 26 26" aria-hidden="true"><rect x="5" y="2.5" width="16" height="21" rx="1.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/><path d="M8.5 8h9M8.5 11.5h9M8.5 15h5.5" stroke="var(--ink-2)" stroke-width="1.4" stroke-linecap="round"/><path d="M14.5 18.5l2 2 4-5" stroke="var(--pen)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>English G12</span>
+    </a>
+    <nav class="mainnav" aria-label="Main">
+      <a href="../index.html" data-nav="paper"><span class="w-full">The paper</span><span class="w-short">Paper</span></a>
+      <a href="../reading/index.html" data-nav="reading"><span class="w-full">Reading room</span><span class="w-short">Reading</span></a>
+      <a href="../writing/index.html" data-nav="writing"><span class="w-full">Writing studio</span><span class="w-short">Writing</span></a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="seg" role="group" aria-label="My section">
+      <button type="button" data-section-btn="ls" aria-pressed="true" title="Life Sciences">LS</button>
+      <button type="button" data-section-btn="se" aria-pressed="false" title="Sociology and Economics">SE</button>
+    </div>
+    <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch light or dark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap" style="padding-bottom:40px">
+  <header style="padding-top:22px">
+    <h1>Teacher dashboard</h1>
+    <p class="lead">Who is studying, for how long, and which skills of the paper your students are ready for.</p>
+  </header>
+
+  <section class="door" id="not-connected" hidden style="max-width:560px">
+    <h2>Not connected yet</h2>
+    <p>The dashboard reads your Google Sheet <i>English G12 — student activity</i>. Once its script is deployed and its web-app address is pasted into <code>assets/js/config.js</code>, student activity appears here.</p>
+  </section>
+
+  <section class="door" id="login" hidden style="max-width:420px">
+    <h2>Teacher password</h2>
+    <form id="login-form">
+      <label for="key" class="sr">Teacher password</label>
+      <input id="key" type="password" autocomplete="current-password" required style="margin:6px 0 10px">
+      <button class="btn" type="submit">Open the dashboard</button>
+      <p id="login-msg" class="muted" role="status" style="margin-top:10px"></p>
+    </form>
+  </section>
+
+  <div id="dash" hidden>
+    <div class="filters" role="group" aria-label="Filters">
+      <label class="sr" for="f-cls">Class</label><select id="f-cls"></select>
+      <label class="sr" for="f-sec">Section</label><select id="f-sec"><option value="">LS and SE</option><option value="LS">LS</option><option value="SE">SE</option></select>
+      <label class="sr" for="f-period">Active</label><select id="f-period"><option value="all">Any time</option><option value="today">Active today</option><option value="week">Active this week</option><option value="month">Active this month</option></select>
+      <label class="sr" for="f-q">Search a name</label><input id="f-q" type="search" placeholder="Search a name">
+      <span class="spacer"></span>
+      <button class="btn small ghost" type="button" id="refresh">Refresh</button>
+      <a class="btn small ghost" id="sheet-link" href="#" target="_blank" rel="noopener">Open the Sheet</a>
+    </div>
+
+    <div class="tiles" id="tiles"></div>
+
+    <section class="dpanel">
+      <h2>Students</h2>
+      <p class="muted" style="font-size:.88rem;margin-top:-4px">Tap a column to sort, a student to see their details.</p>
+      <div class="scroll-x">
+        <table class="t dash-t" id="tbl">
+          <thead><tr><th data-k="name" scope="col">Name</th><th scope="col">Sec.</th><th data-k="cls" scope="col">Class</th><th data-k="marks" scope="col">Marks ready /20</th><th data-k="skills" scope="col" class="num">Skills</th><th data-k="minutes" scope="col" class="num">Study time</th><th data-k="visits" scope="col" class="num">Visits</th><th data-k="last" scope="col">Last seen</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="dpanel" id="detail" hidden></section>
+
+    <div class="dgrid2">
+      <section class="dpanel">
+        <h2>Skills across the class <span class="muted" id="skills-n" style="font:400 .85rem var(--ui)"></span></h2>
+        <div id="skills"></div>
+      </section>
+      <section class="dpanel">
+        <h2>Recent activity</h2>
+        <ul class="feed" id="feed"></ul>
+      </section>
+    </div>
+    <p class="muted" style="font-size:.85rem;margin-top:16px">Names are typed by the students and are not verified. Study time counts minutes when the page is open and the student is active. <button class="btn small ghost" type="button" id="forget">Forget the password on this device</button></p>
+  </div>
+</main>
+<footer class="site"><div class="wrap">
+  <p>English G12: a free companion for Grade 12 Life Sciences and Sociology &amp; Economics students preparing the Lebanese official English exam.</p>
+  <p>Paper structure, instructions and marking follow the CRDP official papers and grading schemes. Reading texts on this site are original practice texts. Voices are generated with the open-source Kokoro model.</p>
+</div></footer>
+
+</body>
+</html>

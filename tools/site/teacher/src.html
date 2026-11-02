@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> ../../partials/head.html}}
+<title>Teacher dashboard · English G12</title>
+<meta name="robots" content="noindex, nofollow">
+<script src="{{root}}assets/js/teacher.js" defer></script>
+</head>
+<body data-nogate data-nav="teacher">
+{{> ../../partials/topbar.html}}
+<main id="main" class="wrap" style="padding-bottom:40px">
+  <header style="padding-top:22px">
+    <h1>Teacher dashboard</h1>
+    <p class="lead">Who is studying, for how long, and which skills of the paper your students are ready for.</p>
+  </header>
+
+  <section class="door" id="not-connected" hidden style="max-width:560px">
+    <h2>Not connected yet</h2>
+    <p>The dashboard reads your Google Sheet <i>English G12 — student activity</i>. Once its script is deployed and its web-app address is pasted into <code>assets/js/config.js</code>, student activity appears here.</p>
+  </section>
+
+  <section class="door" id="login" hidden style="max-width:420px">
+    <h2>Teacher password</h2>
+    <form id="login-form">
+      <label for="key" class="sr">Teacher password</label>
+      <input id="key" type="password" autocomplete="current-password" required style="margin:6px 0 10px">
+      <button class="btn" type="submit">Open the dashboard</button>
+      <p id="login-msg" class="muted" role="status" style="margin-top:10px"></p>
+    </form>
+  </section>
+
+  <div id="dash" hidden>
+    <div class="filters" role="group" aria-label="Filters">
+      <label class="sr" for="f-cls">Class</label><select id="f-cls"></select>
+      <label class="sr" for="f-sec">Section</label><select id="f-sec"><option value="">LS and SE</option><option value="LS">LS</option><option value="SE">SE</option></select>
+      <label class="sr" for="f-period">Active</label><select id="f-period"><option value="all">Any time</option><option value="today">Active today</option><option value="week">Active this week</option><option value="month">Active this month</option></select>
+      <label class="sr" for="f-q">Search a name</label><input id="f-q" type="search" placeholder="Search a name">
+      <span class="spacer"></span>
+      <button class="btn small ghost" type="button" id="refresh">Refresh</button>
+      <a class="btn small ghost" id="sheet-link" href="#" target="_blank" rel="noopener">Open the Sheet</a>
+    </div>
+
+    <div class="tiles" id="tiles"></div>
+
+    <section class="dpanel">
+      <h2>Students</h2>
+      <p class="muted" style="font-size:.88rem;margin-top:-4px">Tap a column to sort, a student to see their details.</p>
+      <div class="scroll-x">
+        <table class="t dash-t" id="tbl">
+          <thead><tr><th data-k="name" scope="col">Name</th><th scope="col">Sec.</th><th data-k="cls" scope="col">Class</th><th data-k="marks" scope="col">Marks ready /20</th><th data-k="skills" scope="col" class="num">Skills</th><th data-k="minutes" scope="col" class="num">Study time</th><th data-k="visits" scope="col" class="num">Visits</th><th data-k="last" scope="col">Last seen</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="dpanel" id="detail" hidden></section>
+
+    <div class="dgrid2">
+      <section class="dpanel">
+        <h2>Skills across the class <span class="muted" id="skills-n" style="font:400 .85rem var(--ui)"></span></h2>
+        <div id="skills"></div>
+      </section>
+      <section class="dpanel">
+        <h2>Recent activity</h2>
+        <ul class="feed" id="feed"></ul>
+      </section>
+    </div>
+    <p class="muted" style="font-size:.85rem;margin-top:16px">Names are typed by the students and are not verified. Study time counts minutes when the page is open and the student is active. <button class="btn small ghost" type="button" id="forget">Forget the password on this device</button></p>
+  </div>
+</main>
+{{> ../../partials/footer.html}}
+</body>
+</html>

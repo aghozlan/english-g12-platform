@@ -244,6 +244,7 @@
     initTheme(); initSection();
     const ok = await EGP.gate();
     if (!ok) return;
+    applySection(EGP.section());
     initNav(); initSubtabs(); initSteps(); initGlossary(); initAnswers(); initQuiz(); initCards();
     EGP.visit();
     window.dispatchEvent(new Event("egp-ready"));

@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
   const base = "http://127.0.0.1:" + server.address().port;
   const browser = await chromium.launch({ args: ["--use-gl=swiftshader", "--enable-webgl", "--ignore-gpu-blocklist"] });
   const pages = [["home", "/index.html"]];
-  for (const dir of ["reading", "skills", "writing"]) {
+  for (const dir of ["reading", "skills", "writing", "teacher"]) {
     const d = path.join(root, dir);
     if (fs.existsSync(path.join(d, "index.html"))) pages.push([dir, "/" + dir + "/index.html"]);
     if (fs.existsSync(d)) for (const f of fs.readdirSync(d)) if (fs.existsSync(path.join(d, f, "index.html"))) pages.push([dir + "-" + f, "/" + dir + "/" + f + "/index.html"]);
@@ -37,6 +37,7 @@ const server = http.createServer((req, res) => {
         const errors = [];
         page.on("console", (m) => { if (m.type() === "error" && !/fonts\.(googleapis|gstatic)/.test(m.text())) errors.push(m.text()); });
         page.on("pageerror", (e) => errors.push(String(e)));
+        await page.addInitScript(() => { try { if (!localStorage.getItem("egp.profile")) localStorage.setItem("egp.profile", JSON.stringify({ id: "checkcheck00", name: "Check Bot", section: "ls", cls: "" })); } catch (e) {} });
         await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.fulfill({ status: 200, contentType: "text/css", body: "" })); // offline check: fallback fonts
         await page.goto(base + url, { waitUntil: "load" });
         await page.waitForTimeout(name === "home" ? 2500 : 600);

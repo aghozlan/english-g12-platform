@@ -11,6 +11,7 @@ Live: https://aghozlan.github.io/english-g12-platform/
 - **The paper** (home): the exam sheet, marks in the margin, the examiner’s comment, word of the day, days to the exam.
 - **Skills** (`skills/<id>/`): every question type on the paper is live: the paper and timing, skim/scan, command words; Section A (own words, inferring), B (false statements), C (eleven analysis skills), D (table or graph), E (vocabulary), F (reference words).
 - **Writing** (`skills/essay-toolkit`, `skills/<genre>`, `writing/`): the essay toolkit, four genre pages with real prompts, the official outlines and model essays read aloud, and a writing studio that builds an essay on the outline with a live word count, automatic checks and self-marking on the official criteria.
+- **Entering and the teacher dashboard**: students enter with their name, section and an optional class code; their progress and study time go to the teacher’s Google Sheet; `teacher/` shows it (password, not linked on the site). Setup: [TEACHER_SETUP.md](TEACHER_SETUP.md).
 - **Reading room** (`reading/`): original exam-style texts on the LS and SE themes, read aloud by a natural voice with the sentence highlighted, reading tools (skim, scan, highlighter, pronoun tracer), and a full set of exam questions with model answers.
 
 ## How it is built
@@ -33,6 +34,10 @@ assets/js/platform.js      shared behaviour, one entry point EGP.boot()
 assets/js/labs.js          the interactive models
 assets/js/listen.js        the read-aloud player with sentence highlighting
 assets/js/skill.js         skill page chrome: crumbs, marks, "ready", next/previous
+assets/js/student.js       the welcome card (name, section, class code) and the activity tracker
+assets/js/config.js        the Sheet's web-app address (EGP_TRACK_URL)
+assets/js/teacher.js       the teacher dashboard
+tools/apps-script/Code.gs  the script that lives in the Google Sheet (password placeholder only)
 audio/                     recorded texts (.m4a + sentence timings .json) and word clips
 _raw/                      git-ignored: reference PDF, CRDP downloads, screenshots
 ```
@@ -60,7 +65,7 @@ The Kokoro model files come from the kokoro-onnx GitHub releases (`model-files-v
 2. `tools/site/reading/<id>/src.html` (copy an existing one), add it to `EGP_TEXTS` in the catalog.
 3. Record it with `tools/audio.py`.
 
-### Sign-in later
+### Firebase later (optional)
 
 Answers live only in `<div class="ans" hidden>` blocks and every exercise has a stable `data-ex` id. To add Firebase: set `EGP.gate = async () => …` before `platform.js` runs (`EGP.boot()` waits for it), and encrypt the `.ans` blocks in `tools/build.js`.
 

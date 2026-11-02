@@ -12,6 +12,8 @@
 <script>window.EGP_ROOT = "";</script>
 <script src="assets/js/catalog.js" defer></script>
 <script src="assets/js/companion.js" defer></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/student.js" defer></script>
 <script src="assets/js/platform.js" defer></script>
 
 <title>English G12: the official English paper, skill by skill</title>
@@ -57,7 +59,7 @@
       </div>
 
       <div class="sheet-id">
-        <label for="name">Name:</label> <input id="name" type="text" autocomplete="given-name" placeholder="your name" maxlength="24">
+        <label for="name">Name:</label> <input id="name" type="text" autocomplete="name" placeholder="your name" maxlength="40" style="cursor:pointer;width:14em">
         <span class="muted" style="font-size:.9rem">The official English paper, Grade 12 <span data-sec-text='{"ls":"Life Sciences","se":"Sociology and Economics"}'>Life Sciences</span>. Tap any question type to learn it.</span>
       </div>
       <h1 id="sheet-title" class="sr">The official English paper, skill by skill</h1>
@@ -127,8 +129,10 @@ window.addEventListener("egp-ready", function () {
   window.addEventListener("egp-ready-change", render);
   // name, kept on this device
   var nm = document.getElementById("name");
-  nm.value = EGP.store.get("name", "");
-  nm.addEventListener("input", function () { EGP.store.set("name", nm.value); });
+  var prof = EGP.profile && EGP.profile();
+  nm.value = prof ? prof.name : EGP.store.get("name", "");
+  nm.readOnly = true; nm.title = "Tap to change your details";
+  nm.addEventListener("click", function () { EGP.editProfile && EGP.editProfile(); });
   // countdown
   document.getElementById("days").textContent = EGP.daysToExam();
   document.getElementById("days-note").textContent = (window.EGP_EXAM || {}).estimated ? "Estimated date, updated when the Ministry announces the exam." : "";
