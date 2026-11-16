@@ -1,7 +1,7 @@
 /**
  * English G12 — student activity collector and teacher dashboard feed.
- * Lives inside the Google Sheet "English G12 — student activity"
- * (Extensions → Apps Script). Deploy as a web app: Execute as "Me", access "Anyone".
+ * A standalone Apps Script project that writes to the Google Sheet
+ * "English G12 — student activity" (SHEET_ID below). Deploy as a web app: Execute as "Me", access "Anyone".
  *
  *  POST  (from the platform)  : records a student's profile, progress and activity.
  *  GET   ?key=...             : returns all students and recent activity, for the dashboard.
@@ -9,6 +9,7 @@
  * The teacher password is the only secret. Change it here, then Deploy → Manage deployments
  * → edit → Version: New version → Deploy.
  */
+const SHEET_ID = "1KwaM7L_KfAeDujW1499gvriwRncS4jrxBm8UETd0R0g";
 const TEACHER_KEY = "CHANGE_ME";
 const MAX_EVENTS_RETURNED = 600;
 
@@ -16,7 +17,7 @@ const S_HEAD = ["Student ID", "Name", "Section", "Class code", "First seen", "La
 const A_HEAD = ["Time", "Student ID", "Name", "Section", "Class code", "Event", "Page", "Detail", "Seconds"];
 
 function sheet_(name, head) {
-  const ss = SpreadsheetApp.getActive();
+  const ss = SpreadsheetApp.openById(SHEET_ID);
   let sh = ss.getSheetByName(name);
   if (!sh) { sh = ss.insertSheet(name); sh.appendRow(head); sh.setFrozenRows(1); }
   return sh;
@@ -81,7 +82,7 @@ function doGet(e) {
   const av = last > 1 ? act.getRange(from, 1, last - from + 1, A_HEAD.length).getValues() : [];
   const iso = (d) => (d instanceof Date ? d.toISOString() : String(d));
   return out_({
-    ok: true, now: new Date().toISOString(), sheet: SpreadsheetApp.getActive().getUrl(),
+    ok: true, now: new Date().toISOString(), sheet: SpreadsheetApp.openById(SHEET_ID).getUrl(),
     students: sv.map((r) => ({ id: r[0], name: r[1], section: r[2], cls: r[3], first: iso(r[4]), last: iso(r[5]), visits: r[6], minutes: r[7], readyCount: r[8], marks: r[9], ready: String(r[10] || "").split(", ").filter(String), lastPage: r[11], texts: String(r[12] || "").split(", ").filter(String) })),
     events: av.map((r) => ({ at: iso(r[0]), id: r[1], name: r[2], section: r[3], cls: r[4], t: r[5], p: r[6], d: r[7], s: r[8] }))
   });

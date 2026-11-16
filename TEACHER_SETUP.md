@@ -2,10 +2,8 @@
 
 Student activity goes to your own Google Sheet, **English G12 — student activity** (already in your Drive, with two tabs: *Students* and *Activity*). A small script inside the Sheet receives the updates and feeds the dashboard. No other account or database is needed.
 
-## 1. Paste the script
-1. Open the Sheet **English G12 — student activity** in Google Drive.
-2. Menu **Extensions → Apps Script**.
-3. Delete everything in `Code.gs`, paste the whole content of the `Code.gs` file Claude sent you (it already contains your teacher password), and press **Save** (the disk icon).
+## 1. The script
+The script is a standalone Apps Script project, **English G12 tracker** (script.google.com), that writes to the Sheet by its ID (`SHEET_ID` in `Code.gs`). It already contains your teacher password.
 
 ## 2. Deploy it as a web app
 1. **Deploy → New deployment**. Next to "Select type" click the gear → **Web app**.
